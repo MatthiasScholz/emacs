@@ -1,0 +1,44 @@
+#+TITLE: general layer
+
+# The maximum height of the logo should be 200 pixels.
+[[img/general.png]]
+
+# TOC links should be GitHub style anchors.
+* Table of Contents                                        :TOC_4_gh:noexport:
+- [[#description][Description]]
+  - [[#font][Font]]
+  - [[#neo2-configuration][Neo2 Configuration]]
+- [[#install][Install]]
+- [[#key-bindings][Key bindings]]
+- [[#todo][TODO]]
+
+* Description
+** Font
+ - Source Code Pro
+
+** Neo2 Configuration
+ - https://wiki.neo-layout.org/wiki/MacOsEmacs
+ - CapsLock not working properly in Emacs
+
+
+* Install
+To use this configuration layer, add it to your =~/.spacemacs=. You will need to
+add =general= to the existing =dotspacemacs-configuration-layers= list in this
+file.
+
+* Key bindings
+
+| Key Binding | Description    |
+|-------------+----------------|
+| ~SPC x x x~ | Does thing01   |
+# Use GitHub URLs if you wish to link a Spacemacs documentation file or its heading.
+# Examples:
+# [[https://github.com/syl20bnr/spacemacs/blob/master/doc/VIMUSERS.org#sessions]]
+# [[https://github.com/syl20bnr/spacemacs/blob/master/layers/%2Bfun/emoji/README.org][Link to Emoji layer README.org]]
+# If space-doc-mode is enabled, Spacemacs will open a local copy of the linked file.
+
+* TODO
+- helm-mt
+- helm-occur keybinding -> M-s o ( override occur )
+- C-c j -> to jump to character
+- disable C-x C-b
