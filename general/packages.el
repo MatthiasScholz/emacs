@@ -39,9 +39,18 @@
     dockerfile-mode
     docker-tramp
     paradox
+    hcl-mode
+    terraform-mode
+    company-terraform
     )
   )
 
+(defun general/init-hcl-mode () (use-package hcl-mode))
+(defun general/init-terraform-mode () (use-package terraform-mode))
+(defun general/init-company-terraform () (use-package company-terraform))
+
+
+;; FIXME: Storing the key in an repositroy is generally a bad idea!
 (defun general/post-init-paradox ()
   (setq paradox-github-token '53f1f0c65f90f8fea51e9ced4ae49f1dd7f5fffd))
 
@@ -157,6 +166,8 @@
 
 ;; Keybindings
 (global-set-key (kbd "M-s o") 'helm-occur)
+(global-set-key (kbd "C-x C-b") 'helm-buffers-list)
+
 
 ;; Neo2 configuration:
 (setq ns-right-alternate-modifier nil)
