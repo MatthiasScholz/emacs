@@ -34,8 +34,12 @@
     projectile
     go-projectile
     company-go
+    go-mode
     )
   )
+
+(defun golang/post-init-go-mode ()
+  (add-hook 'before-save-hook #'gofmt-before-save))
 
 (defun golang/post-init-projectile ()
   (when (memq window-system '(mac ns))
