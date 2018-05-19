@@ -51,15 +51,8 @@
   (use-package go-projectile
     ))
 
-(defun golang/init-company-go ()
-  (use-package company-go
-    ;; This has to be in init because it's a package entry point
-    :init
-    (progn
-      (add-hook 'go-mode-hook (lambda ()
-                                (set (make-local-variable 'company-backends) '(company-go))
-                                (company-mode))))
-    ))
+(defun golang/post-init-company-go ()
+  )
 
 ;;; packages.el ends here
 
