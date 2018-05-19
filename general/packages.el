@@ -45,9 +45,12 @@
     )
   )
 
-(defun general/init-hcl-mode () (use-package hcl-mode))
-(defun general/init-terraform-mode () (use-package terraform-mode))
-(defun general/init-company-terraform () (use-package company-terraform))
+(defun general/init-hcl-mode ()
+  (use-package hcl-mode))
+(defun general/post-init-terraform-mode ()
+  )
+(defun general/init-company-terraform ()
+  (use-package company-terraform))
 
 ;; FIXME: Storing the key in an repositroy is generally a bad idea!
 (defun general/post-init-paradox ()
@@ -70,11 +73,11 @@
   (use-package helm-mt
               :after helm multi-term))
 
-(defun general/init-dockerfile-mode ()
-  (use-package dockerfile-mode))
+(defun general/post-init-dockerfile-mode ()
+  )
 
-(defun general/init-docker-tramp ()
-  (use-package docker-tramp))
+(defun general/post-init-docker-tramp ()
+  )
 
 
 ;; TODO REFACTOR it could make sense to put helm-swoop into a separate layer since lots of configuration is provided here.
