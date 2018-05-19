@@ -40,10 +40,18 @@
 
 (defun orgmode/post-init-org ()
   ;; Configure path to the notes depending on the operating system
+  ;; Windows
   (when (memq system-type '(windows-nt ms-dos))
     (setq org-directory "D:\\Documents\\Notes")
     (setq org-agenda-files '("D:\\Documents\\Notes"))
     )
+
+  ;; MacOSX
+  (when (memq system-type '(darwin))
+    (setq org-directory "~/Dropbox/Notes")
+    (setq org-agenda-files '("~/Dropbox/Notes"))
+    )
+
   (setq org-archive-location "archive/%s::")
 
   ;; Configure keywords
