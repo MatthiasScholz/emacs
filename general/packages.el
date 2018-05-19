@@ -49,7 +49,6 @@
 (defun general/init-terraform-mode () (use-package terraform-mode))
 (defun general/init-company-terraform () (use-package company-terraform))
 
-
 ;; FIXME: Storing the key in an repositroy is generally a bad idea!
 (defun general/post-init-paradox ()
   (setq paradox-github-token '53f1f0c65f90f8fea51e9ced4ae49f1dd7f5fffd))
@@ -177,5 +176,24 @@
 
 ;; Overwrite selection with pasted text
 (delete-selection-mode 1)
+
+
+;; Detect system to setup some system dependent settings
+(if (eq system-type 'windows-nt)
+    ;; ON Windows
+    (progn
+      (message "We are on windows")
+      ;; path to aspell, silversearcher, git, ... executables
+      (add-to-list 'exec-path "D:/Software/PortableApps/CygwinPortable/App/Runtime/Cygwin/bin")
+
+      ;;disable the version control
+      (setq vc-handled-backends ())
+
+      ;; to improve speed a little bit
+      (setq w32-get-true-file-attributes nil)
+
+      )
+  )
+
 
 ;;; packages.el ends here
