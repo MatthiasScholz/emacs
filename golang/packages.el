@@ -35,17 +35,24 @@
     go-projectile
     company-go
     go-mode
+    go-dlv
     )
   )
 
 (defun golang/post-init-go-mode ()
   (add-hook 'before-save-hook #'gofmt-before-save))
 
+;; Applying the environment variables define in the shell ( bash, zsh ) for emacs
 (defun golang/post-init-projectile ()
   (when (memq window-system '(mac ns))
      (exec-path-from-shell-initialize)
      (exec-path-from-shell-copy-env "GOPATH"))
   )
+
+;; Configure the debugger
+(defun golang/init-go-dlv ()
+  (use-package go-dlv)
+  (setq go-dlv-command-name '"~/go/bin/dlv"))
 
 (defun golang/init-go-projectile ()
   (use-package go-projectile
