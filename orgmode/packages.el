@@ -34,7 +34,7 @@
     org
     org-inlinetask
     deft
-    org-brain
+    ;;org-brain
     )
   )
 
