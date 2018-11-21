@@ -195,8 +195,19 @@
       ;; to improve speed a little bit
       (setq w32-get-true-file-attributes nil)
 
+      ;; Helm ag 
+      (add-to-list 'exec-path "D:/Software/PortableApps/ag/")
       )
   )
+
+
+;; make unix lineendings default
+(setq default-buffer-file-coding-system 'utf-8-unix)
+
+;; Helm configuration
+;; https://github.com/syohex/emacs-helm-ag
+;; helm-ag-base-command:
+;;  ag --vimgrep --line-numbers -S --hidden --color --nogroup %s %s %s
 
 
 ;;; packages.el ends here

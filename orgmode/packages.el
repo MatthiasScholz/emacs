@@ -65,6 +65,13 @@
                     "CANCELED(c@)"
                     )))
 
+  (setq org-todo-keyword-faces
+        '(("TODO"        . "red")
+          ("IN-PROGRESS" . "yellow")
+          ("WAIT"        . "orange")
+          ("DELEGATED"   . "green")
+          ))
+
   ;; Configure capture
   (setq org-default-notes-file (concat org-directory "/capture.org"))
   (setq org-capture-templates
