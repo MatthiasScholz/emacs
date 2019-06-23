@@ -42,6 +42,7 @@
     hcl-mode
     terraform-mode
     company-terraform
+    keyfreq
     )
   )
 
@@ -203,6 +204,13 @@
 
 ;; make unix lineendings default
 (setq default-buffer-file-coding-system 'utf-8-unix)
+
+;; Activate Command Usage Statistics
+(defun general/post-init-keyfreq ()
+  (use-package keyfreq
+    :config
+    (keyfreq-mode 1)
+    (keyfreq-autosave-mode 1)))
 
 ;; Helm configuration
 ;; https://github.com/syohex/emacs-helm-ag
