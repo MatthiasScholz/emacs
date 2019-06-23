@@ -222,6 +222,9 @@
   (setq compilation-scroll-output 'first-error)
   )
 
+;; Activate Flycheck globally
+(setq flycheck-global-modes t)
+
 ;; Helm configuration
 ;; https://github.com/syohex/emacs-helm-ag
 ;; helm-ag-base-command:
