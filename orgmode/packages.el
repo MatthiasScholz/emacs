@@ -86,9 +86,8 @@
   )
 
 (defun orgmode/post-init-deft ()
-  (when (memq system-type '(windows-nt ms-dos))
-    (setq deft-directory "D:\\Documents\\Notes")
-    )
+  (use-package org)
+  (setq deft-directory org-directory)
   )
 
 (defun orgmode/init-org-brain ()
