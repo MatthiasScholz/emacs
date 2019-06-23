@@ -43,6 +43,7 @@
     terraform-mode
     company-terraform
     keyfreq
+    compile
     )
   )
 
@@ -211,6 +212,11 @@
     :config
     (keyfreq-mode 1)
     (keyfreq-autosave-mode 1)))
+
+;; Compilation Buffer Configuration
+(defun general/post-init-compile ()
+  (setq compilation-scroll-output 'first-error)
+  )
 
 ;; Helm configuration
 ;; https://github.com/syohex/emacs-helm-ag
