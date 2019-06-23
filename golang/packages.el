@@ -40,7 +40,12 @@
   )
 
 (defun golang/post-init-go-mode ()
-  (add-hook 'before-save-hook #'gofmt-before-save))
+  ;; use goimports as a more sophisticated replacement of go fmt
+  (setq gofmt-command "goimports")
+
+  ;; run go fmt automatically when saving
+  (add-hook 'before-save-hook #'gofmt-before-save)
+  )
 
 ;; Applying the environment variables define in the shell ( bash, zsh ) for emacs
 (defun golang/post-init-projectile ()
