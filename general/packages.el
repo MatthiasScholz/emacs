@@ -206,6 +206,10 @@
 ;; make unix lineendings default
 (setq default-buffer-file-coding-system 'utf-8-unix)
 
+
+;; Configure GNU make as the default format for Makefiles
+(add-to-list 'auto-mode-alist '("Makefile.*" . makefile-gmake-mode))
+
 ;; Activate Command Usage Statistics
 (defun general/post-init-keyfreq ()
   (use-package keyfreq
