@@ -36,6 +36,7 @@
     company-go
     go-mode
     go-dlv
+    golint
     )
   )
 
@@ -64,6 +65,9 @@
     ))
 
 (defun golang/post-init-company-go ()
+;; Requires golint installed in the GOPATH!
+(defun golang/init-golint ()
+  (use-package golint)
   )
 
 ;;; packages.el ends here
