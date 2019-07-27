@@ -49,7 +49,15 @@
   ;; MacOSX
   (when (memq system-type '(darwin))
     (setq org-directory "~/Dropbox/Notes")
-    (setq org-agenda-files '("~/Dropbox/Notes"))
+    ;; NOT WORKING recursively:
+    ;; (setq org-agenda-files '("~/Dropbox/Notes"))
+
+    (setq org-agenda-files (apply 'append
+			                            (mapcar
+			                             (lambda (directory)
+				                             (directory-files-recursively
+				                              directory org-agenda-file-regexp))
+			                             '("~/Dropbox/Notes"))))
     )
 
   (setq org-archive-location "archive/%s::")
@@ -72,6 +80,10 @@
           ("DELEGATED"   . "green")
           ))
 
+  (setq org-highest-priority ?A)
+  (setq org-lowest-priority ?D)
+  (setq org-default-priority ?B)
+
   ;; Configure capture
   (setq org-default-notes-file (concat org-directory "/capture.org"))
   (setq org-capture-templates
@@ -87,7 +99,18 @@
 
 (defun orgmode/post-init-deft ()
   (use-package org)
-  (setq deft-directory org-directory)
+
+  ;; NOT WORKING: (setq deft-directory org-directory)
+
+  ;; Windows
+  (when (memq system-type '(windows-nt ms-dos))
+    (setq deft-directory "D:\\Documents\\Notes")
+    )
+
+  ;; MacOSX
+  (when (memq system-type '(darwin))
+    (setq deft-directory "~/Dropbox/Notes")
+    )
   )
 
 (defun orgmode/init-org-brain ()
