@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: Terratest Run Section in a Makefile
+# key: ttr
+# expand-env: ((yas-indent-line nil))
+# Creating a Makefile target to run a specific subset of terratests.
+# --
+
+$0: cleanup
+	$(run_test)
+
