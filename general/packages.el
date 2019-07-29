@@ -58,6 +58,8 @@
 (defun general/post-init-paradox ()
   (setq paradox-github-token '53f1f0c65f90f8fea51e9ced4ae49f1dd7f5fffd))
 
+;; Folding everywhere
+;; https://github.com/gregsexton/origami.el
 (defun general/post-init-origami ()
   (use-package origami
     :config
@@ -224,6 +226,10 @@
 
 ;; Activate Flycheck globally
 (setq flycheck-global-modes t)
+
+;; Use more themeing
+;; https://github.com/domtronn/all-the-icons.el
+;; TODO (require 'all-the-icons)
 
 ;; Helm configuration
 ;; https://github.com/syohex/emacs-helm-ag
