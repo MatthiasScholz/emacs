@@ -65,11 +65,24 @@
     ))
 
 (defun golang/post-init-company-go ()
+  (use-package company-go
+	       ))
+
 ;; Requires golint installed in the GOPATH!
 (defun golang/init-golint ()
   (use-package golint)
   )
 
-;;; packages.el ends here
+;;; Go mode and imenu
+;;; Support multi line golang function signatures
+;;; https://emacs.stackexchange.com/questions/30797/imenu-is-missing-multi-line-golang-function-signatures
+(defun my-go-mode-hook ()
+                                        ; Custom imenu regexes
+  (setq imenu-generic-expression
+        '(("type" "^[ \t]*type *\\([^ \t\n\r\f]*[ \t]*\\(struct\\|interface\\)\\)" 1)
+          ("func" "^func *\\(.*\\)" 1)))
+  )
 
-    
+(add-hook 'go-mode-hook 'my-go-mode-hook)
+
+;;; packages.el ends here
