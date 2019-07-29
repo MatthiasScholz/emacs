@@ -1,0 +1,40 @@
+# -*- mode: snippet -*-
+# name: Terratest TestCase
+# key: ttcase
+# --
+
+func Test$1Example(t *testing.T) {
+   tmp$1 := test_structure.CopyTerraformFolderToTemp(t, "../", "$2")
+   awsRegion := "${3:us-east-1}"
+
+   // Create AMI
+   test_structure.RunTestStage(t, "setup_ami", func() {
+      // Execution from inside the test folder
+      amiName := "${4:amazon-linux-ami2}"
+      amiId := helperBuildAmi(t, "${5:../modules/ami2/nomad-consul-docker-ecr.json}", amiName, awsRegion)
+
+      test_structure.SaveString(t, tmp$1, SAVED_AWS_REGION, awsRegion)
+      test_structure.SaveAmiId(t, tmp$1, amiId)
+   })
+
+   // Cleanup
+   defer test_structure.RunTestStage(t, "teardown", func() {
+      helperCleanup(t, tmp$1)
+
+      // Delete the generated AMI
+      amiId := test_structure.LoadAmiId(t, tmp$1)
+      awsRegion := test_structure.LoadString(t, tmp$1, SAVED_AWS_REGION)
+      aws.DeleteAmi(t, awsRegion, amiId)
+   })
+
+   // Create Infrastructure
+   test_structure.RunTestStage(t, "setup", func() {
+      helperSetupInfrastructure(t, awsRegion, tmp$1, ${6:true})
+   })
+
+   // Validate Example
+   test_structure.RunTestStage(t, "validate", func() {
+      // TODO
+      $0
+   })
+}

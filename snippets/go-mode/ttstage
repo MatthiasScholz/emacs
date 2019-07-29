@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: Terratest Stag
+# key: ttstage
+# --
+test_structure.RunTestStage(t, "$1", func() {
+   $0
+})
