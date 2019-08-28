@@ -36,12 +36,8 @@
     helm-mt
     helm-swoop
     company
-    dockerfile-mode
-    docker-tramp
     paradox
     hcl-mode
-    terraform-mode
-    company-terraform
     keyfreq
     compile
     )
@@ -49,10 +45,6 @@
 
 (defun general/init-hcl-mode ()
   (use-package hcl-mode))
-(defun general/post-init-terraform-mode ()
-  )
-(defun general/init-company-terraform ()
-  (use-package company-terraform))
 
 ;; FIXME: Storing the key in an repositroy is generally a bad idea!
 (defun general/post-init-paradox ()
@@ -75,12 +67,7 @@
 
 (defun general/init-helm-mt ()
   (use-package helm-mt
-              :after helm multi-term))
-
-(defun general/post-init-dockerfile-mode ()
-  )
-
-(defun general/post-init-docker-tramp ()
+    :after helm multi-term))
   )
 
 
