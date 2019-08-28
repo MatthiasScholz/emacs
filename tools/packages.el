@@ -47,14 +47,14 @@
     )
   )
 
-(defun general/init-company-terraform ()
+(defun tools/init-company-terraform ()
   (use-package company-terraform))
 
-(defun general/post-init-dockerfile-mode ()
+(defun tools/post-init-dockerfile-mode ()
   (use-package dockerfile-mode)
   )
 
-(defun general/post-init-docker-tramp ()
+(defun tools/post-init-docker-tramp ()
   (use-package docker-tramp)
   )
 
