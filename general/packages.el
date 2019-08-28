@@ -40,6 +40,9 @@
     hcl-mode
     keyfreq
     compile
+    company
+    restclient
+    company-restclient
     )
   )
 
@@ -68,8 +71,18 @@
 (defun general/init-helm-mt ()
   (use-package helm-mt
     :after helm multi-term))
-  )
 
+;; REST Client
+;; https://github.com/pashky/restclient.el
+(defun general/init-restclient ()
+  (use-package restclient))
+
+;; REST Client Completion
+;; https://github.com/iquiw/company-restclient
+(defun general/init-company-restclient ()
+  (use-package company-restclient)
+  (add-to-list 'company-backends 'company-restclient)
+  )
 
 ;; TODO REFACTOR it could make sense to put helm-swoop into a separate layer since lots of configuration is provided here.
 (defun general/post-init-helm-swoop ()
@@ -154,7 +167,7 @@
   (setq company-idle-delay .3)                         ; decrease delay before autocompletion popup shows
   (setq company-echo-delay 0)                          ; remove annoying blinking
   (setq company-begin-commands '(self-insert-command)) ; start autocompletion only after typing
-)
+  )
 
 
 ;; Keybindings
