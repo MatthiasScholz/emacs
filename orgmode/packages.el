@@ -48,7 +48,7 @@
 
   ;; MacOSX
   (when (memq system-type '(darwin))
-    (setq org-directory "~/Dropbox/Notes")
+    (setq org-directory "~/Documents/Notes")
     ;; NOT WORKING recursively:
     ;; (setq org-agenda-files '("~/Dropbox/Notes"))
 
@@ -57,7 +57,7 @@
 			                             (lambda (directory)
 				                             (directory-files-recursively
 				                              directory org-agenda-file-regexp))
-			                             '("~/Dropbox/Notes"))))
+			                             '("~/Documents/Notes"))))
     )
 
   (setq org-archive-location "archive/%s::")
@@ -109,7 +109,7 @@
 
   ;; MacOSX
   (when (memq system-type '(darwin))
-    (setq deft-directory "~/Dropbox/Notes")
+    (setq deft-directory "~/Documents/Notes")
     )
   )
 
