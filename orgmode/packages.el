@@ -125,7 +125,9 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
 (setq org-agenda-custom-commands
       '(("d" "Daily agenda and all TODOs"
          ((tags "PRIORITY=\"A\""
-                ((org-agenda-skip-function '(org-agenda-skip-entry-if 'TODO 'DONE 'CANCELED 'DELEGATED))
+                ((org-agenda-skip-function
+                  '(org-agenda-skip-entry-if 'todo '("DONE" "CANCELED" "DELEGATED"))
+                  )
                  (org-agenda-overriding-header "High-priority unfinished tasks:")))
           (agenda "" ((org-agenda-span 1)))
           (alltodo ""
