@@ -1,0 +1,24 @@
+# -*- mode: snippet -*-
+# name: AWS KMS Key
+# key: kmskey
+# reference: https://www.terraform.io/docs/providers/aws/r/kms_key.html
+# --
+resource "aws_kms_key" "$1" {
+  description = "$2"
+
+  is_enabled  = ${3:true}
+  enable_key_rotation = ${4:true}
+  deletion_window_in_days = ${5:10}
+
+  tags {
+   Name = "$6"
+   Author = "$7"
+   Email = "$8"
+  }
+}
+
+$0
+resource "aws_kms_alias" "$1_alias" {
+  name = "alias/$1_key"
+  target_key_id = "\$\{aws_kms_key.$1.id\}"
+}

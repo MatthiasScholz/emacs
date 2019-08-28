@@ -1,0 +1,14 @@
+# -*- mode: snippet -*-
+# name: AWS KMS Cipher
+# key: kmscipher
+# --
+data "aws_kms_ciphertext" "$1" {
+key_id = "${aws_kms_key.$2.key_id}"
+
+plaintext = <<EOF
+{$0
+"client_id": "e587dbae22222f55da22",
+"client_secret": "8289575d00000ace55e1815ec13673955721b8a5"
+}
+EOF
+}

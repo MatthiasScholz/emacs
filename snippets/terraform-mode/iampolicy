@@ -1,0 +1,34 @@
+# -*- mode: snippet -*-
+# name: AWS IAM Policy
+# key: iampolicy
+# --
+data "aws_iam_policy_document" "$1" {
+  statement {
+    sid = "1"
+
+    actions = [
+      "$7:*"
+    ]
+
+    resources = [
+      "\$\{aws_$8.$9.arn\}"
+    ]
+  }
+}
+
+resource "aws_iam_policy" "$2" {
+  description = "$10"
+  policy = "\$\{data.aws_iam_policy_document.$1.json\}"
+}
+
+resource "aws_iam_role" "$3" {
+  description = "$11"
+  name = "$4"
+}
+
+resource "aws_iam_policy_attachment" "$5" {
+  description = "$12"
+  name = "$6"
+  roles = ["\$\{aws_iam_role.$3.name\}"]
+  policy_arn = "\$\{aws_iam_policy.$2.arn\}"
+}$0

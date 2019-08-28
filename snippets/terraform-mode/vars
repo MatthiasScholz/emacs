@@ -1,0 +1,13 @@
+# -*- mode: snippet -*-
+# name: Variables
+# key: vars
+# --
+variable "deploy_profile" {
+  description = "Name of profile in ~/.aws/credentials file or environment variable AWS_PROFILE which should be used for deploying the infrastructure."
+  default     = "${1:default}"
+}
+
+variable "aws_region" {
+  description = "AWS Region to deploy to."
+  default     = "${2:us-west-1}"
+}$0

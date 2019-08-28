@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: Terraform Code
+# key: terraform
+# --
+\#+BEGIN_SRC terraform
+$0
+\#+END_SRC

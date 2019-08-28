@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: AWS Provider
+# key: provider
+# --
+provider "aws" {
+  profile = "\$\{var.deploy_profile\}"
+  region  = "\$\{var.aws_region\}"
+}$0

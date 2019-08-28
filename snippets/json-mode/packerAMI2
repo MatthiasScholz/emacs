@@ -1,0 +1,66 @@
+# -*- mode: snippet -*-
+# name: Packer Amazon Linux 2 LTS AMI
+# key: packerAMI2
+# --
+\{
+  "min_packer_version": "0.12.0",
+  "variables": \{
+    "aws_account_ids": ""
+    $\{1:"<some_application>_version": "<version>\}"
+  \},
+  "builders": [
+    \{
+      "ami_name": "amazon-linux2-docker-ecr-\{\{isotime | clean_resource_name\}\}",
+      "ami_description": "An Amazon Linux 2 AMI that has Docker, ECR Helper installed.",
+      "instance_type": "t2.micro",
+      "name": "amazon-linux-ami2",
+      "region": "\{\{user `aws_region`\}\}",
+      "ami_regions": "\{\{user `ami_regions`\}\}",
+      "type": "amazon-ebs",
+      "source_ami_filter": \{
+        "filters": \{
+          "virtualization-type": "hvm",
+          "architecture": "x86_64",
+          "name": "*amzn2-ami-hvm-*gp2",
+          "block-device-mapping.volume-type": "gp2",
+          "root-device-type": "ebs"
+        \},
+        "owners": ["amazon"],
+        "most_recent": true
+      \},
+      "ssh_username": "ec2-user",
+      "ami_users": "\{\{user `aws_account_ids`\}\}",
+      "tags": \{
+        "Base_AMI_Name": "\{\{ .SourceAMIName \}\}"
+      \}
+    \}
+  ],
+  "provisioners": [
+    \{
+      "type": "shell",
+      "script": "\{\{template_dir\}\}/setup_amazon-linux.sh",
+      "only": ["amazon-linux-ami2"]
+    \},
+    \{
+      "type": "shell",
+      "inline": ["mkdir -p ~/.docker"]
+    \},
+    \{
+      "type": "file",
+      "source": "\{\{template_dir\}\}/docker_config.json",
+      "destination": "$HOME/.docker/config.json"
+    \},
+    \{
+      "type": "shell",
+      "inline": [
+        "sudo mkdir -p /etc/docker/",
+        "sudo cp $HOME/.docker/config.json /etc/docker/config.json",
+        "sudo chmod a+rwX /etc/docker/"
+      ]
+    \},
+    \{
+      "type": "shell",
+      "script": "\{\{template_dir\}\}/setup_ecr_helper.sh"
+    \}
+  ]
+\}
