@@ -44,13 +44,17 @@
   (use-package terraform-mode
     :config
     (progn
-      (add-hook 'terraform-mode-hook 'terraform-format-on-save-mode)
-      )
+      (add-hook 'terraform-mode-hook 'terraform-format-on-save-mode))
     )
   )
 
 (defun tools/init-company-terraform ()
-  (use-package company-terraform))
+  (use-package company-terraform
+    :config
+    (progn
+      (company-terraform-init))
+    )
+  )
 
 (defun tools/post-init-dockerfile-mode ()
   (use-package dockerfile-mode)
