@@ -35,6 +35,8 @@
     company-terraform
     dockerfile-mode
     docker-tramp
+    plantuml-mode
+    org-mode
     )
   )
 
@@ -56,6 +58,16 @@
 
 (defun tools/post-init-docker-tramp ()
   (use-package docker-tramp)
+  )
+
+(defun tools/init-plantuml-mode ()
+  (use-package plantuml-mode)
+  :config
+  (progn
+    (set plantuml-default-exec-mode 'executable)
+    (add-to-list
+     'org-src-lang-modes '("plantuml" . plantuml))
+    )
   )
 
 ;;; packages.el ends here
