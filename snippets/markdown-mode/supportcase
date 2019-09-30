@@ -1,0 +1,45 @@
+# -*- mode: snippet -*-
+# name: SupportCase
+# key: supportcase
+# --
+# [$1] $2 - $3
+
+## Overview
+
+$4
+
+- First reported: $5
+
+## Impact
+
+$6
+
+## Environment
+
+### URLs
+
+$7
+
+### User
+
+$8
+
+## Steps to Reproduce
+
+$9
+
+### Workaround
+
+$10
+
+## Expected Result
+
+$11
+
+## Actual Result
+
+$12
+
+## Screenshot Library
+
+$13

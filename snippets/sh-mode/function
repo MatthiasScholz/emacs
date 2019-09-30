@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: Comment Function
+# key: function
+# --
+# - $1 ${1:$(make-string (- 76 (string-width yas-text)) ?\-)}
+function $2 () {
+   $0
+}

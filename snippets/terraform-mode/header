@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: Section Header Documentation
+# key: header
+# --
+# = $1 ${1:$(make-string (- 76 (string-width yas-text)) ?\=)}
+$0

@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: Comment Section
+# key: section
+# --
+# = $1 ${1:$(make-string (- 76 (string-width yas-text)) ?\=)}
+$0

@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: Terraform Tags
+# key: tags
+# --
+tags = \{
+  Name = \"\$1-\$\{var.unique_postfix\}\"
+  Environment = \"\$\{var.environment\}\"
+\}
+$0
