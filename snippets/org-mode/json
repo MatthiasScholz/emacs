@@ -2,6 +2,6 @@
 # name: Json File
 # key: json
 # --
-\#+BEGIN_SRC json
+#+BEGIN_SRC json
 $0
-\#+END_SRC
+#+END_SRC
