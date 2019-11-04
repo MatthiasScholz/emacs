@@ -7,7 +7,7 @@
 # . Registries: AWS ECR, local
 # . Versioning: commit based, latest
 # --
-
+# Howto validate: `cat -e -t -v Makefile`
 category    	:= ${1:service}
 name        	:= $0
 
