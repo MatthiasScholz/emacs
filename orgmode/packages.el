@@ -92,6 +92,10 @@
           ("j" "Journal" entry (file+datetree (concat org-directory "/journal.org"))
            "** %?\nEntered on %U\n %i\n %a\n")
           ))
+
+  ;; Colorise code blocks
+  (setq org-src-fontify-natively t)
+
   )
 
 ;; Setup a custom agenda view
