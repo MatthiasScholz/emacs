@@ -44,7 +44,8 @@
   (use-package terraform-mode
     :config
     (progn
-      (add-hook 'terraform-mode-hook 'terraform-format-on-save-mode))
+      (add-hook 'terraform-mode-hook 'terraform-format-on-save-mode)
+      (add-hook 'terraform-mode-hook 'flycheck-mode))
     )
   )
 
