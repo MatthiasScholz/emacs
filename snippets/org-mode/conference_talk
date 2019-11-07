@@ -1,0 +1,13 @@
+# -*- mode: snippet -*-
+# name: Conference Talk Note Structure
+# key: conf_talk
+# --
+*** TODO $1
+- Presenter: $2
+
+**** Take-Aways
+
+**** Questions [/]
+***** TODO 
+
+**** References
