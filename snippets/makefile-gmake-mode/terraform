@@ -1,0 +1,53 @@
+# -*- mode: snippet -*-
+# name: Makefile Terraform
+# key: terraform
+# expand-env: ((yas-indent-line nil))
+# --
+# Makefile for executing terraform including validation steps.
+#
+# An external tool for additional validation is used 'tflint' ( https://github.com/terraform-linters/tflint ). On MacOSX system it can be installed via 'install_macosx'.
+AWS_PROFILE	?= ${1:default}
+
+# Helper functionality to colorise status outputs.
+helper_output$0
+
+# Only internally used variable
+INFRA_PLAN = infrastructure.plan
+PATH_MODULES = ${2:"../../modules/"}
+
+all: init validate apply test$3
+
+install_macosx:
+	brew install tflint
+
+init:
+	\$(call echoinfo, "[INFO] Initializing terraform")
+	terraform init
+
+validate:
+	\$(call echoinfo, "[INFO] Validating terraform")
+	\$(call echoinfo, "[INFO] .Validating main")
+	terraform validate
+	terraform fmt -write=false
+	\$(call echoinfo, "[INFO] .Validating modules")
+	cd "$(PATH_MODULES)" && terraform fmt -write=false -recursive
+	\$(call echoinfo, "[INFO] .Linting")
+	tflint .
+	tflint --module .
+
+plan: validate
+	\$(call echoinfo, "[INFO] Planing infrastructure")
+	terraform plan -var "deploy_profile=$(AWS_PROFILE)" -out="$(INFRA_PLAN)"
+
+apply: plan
+	\$(call echoinfo, "[INFO] Apply infrastructure")
+	terraform apply "$(INFRA_PLAN)"
+
+destroy:
+	\$(call echowarn, "[INFO] DESTROYING infrastructure")
+	terraform destroy
+
+test:
+	\$(call echoinfo, "[INFO] Test infrastructure")
+	@echo "TODO :: test still needs to be written."
+
