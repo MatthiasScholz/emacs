@@ -1,0 +1,16 @@
+# -*- mode: snippet -*-
+# name: Helper Output
+# key: helper_output
+# expand-env: ((yas-indent-line nil))
+# --
+define echoinfo
+	@tput setaf 4
+	@echo \$1
+	@tput sgr0
+endef
+
+define echowarn
+	@tput setaf 1
+	@echo \$1
+	@tput sgr0
+endef
