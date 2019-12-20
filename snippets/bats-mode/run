@@ -1,0 +1,15 @@
+# -*- mode: snippet -*-
+# name: run command
+# key: run
+# --
+run $1
+
+# Output only shown on failure
+echo "Status Code: " \$status
+echo "Output:      " \$output
+
+# Check for none error status code.
+[ "\$status" -eq 0 ]
+local expected_output="$2"
+[[ "\$\{output\}" = *"\$\{expected_output\}"* ]]
+$0
