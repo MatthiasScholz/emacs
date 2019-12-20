@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: Input Parameter
+# key: input
+# --
+local $1="\$\{$2\}"
+$0
