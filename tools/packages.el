@@ -68,6 +68,10 @@
   (use-package docker-tramp)
   )
 
+(defun tools/post-init-org-mode ()
+  (use-package org-mode)
+  )
+
 (defun tools/init-plantuml-mode ()
   (use-package plantuml-mode)
   :config
