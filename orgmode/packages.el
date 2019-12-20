@@ -84,6 +84,9 @@
   (setq org-lowest-priority ?D)
   (setq org-default-priority ?B)
 
+  ;; Open Agenda at startup
+  (add-hook 'after-init-hook (lambda () (org-agenda nil "d")))
+
   ;; Configure capture
   (setq org-default-notes-file (concat org-directory "/capture.org"))
   (setq org-capture-templates
