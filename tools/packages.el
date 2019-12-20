@@ -37,6 +37,9 @@
     docker-tramp
     plantuml-mode
     org-mode
+    sh-mode
+    bats-mode
+    markdown-mode
     )
   )
 
@@ -72,6 +75,32 @@
     (set plantuml-default-exec-mode 'executable)
     (add-to-list
      'org-src-lang-modes '("plantuml" . plantuml))
+    )
+  )
+
+;; Activating indirectly shellcheck via flycheck
+(defun tools/post-init-sh-mode ()
+  (use-package sh-mode)
+  :config
+  (progn
+    (add-hook 'sh-mode-hook 'flycheck-mode))
+  )
+
+;; Activate bats-mode and flycheck
+(defun tools/init-bats-mode ()
+  (use-package bats-mode
+    :config
+    (progn
+      (add-hook 'bats-mode-hook 'flycheck-mode))
+    )
+  )
+
+;; Activate flycheck for Markdown
+(defun tools/post-init-markdown-mode ()
+  (use-package markdown-mode
+    :config
+    (progn
+      (add-hook 'markdown-mode 'flycheck-mode))
     )
   )
 
