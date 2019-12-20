@@ -27,13 +27,21 @@ init:
 validate:
 	\$(call echoinfo, "[INFO] Validating terraform")
 	\$(call echoinfo, "[INFO] .Validating main")
-	terraform validate
-	terraform fmt -write=false
+	@terraform validate
+	@terraform fmt -write=false
 	\$(call echoinfo, "[INFO] .Validating modules")
 	cd "$(PATH_MODULES)" && terraform fmt -write=false -recursive
 	\$(call echoinfo, "[INFO] .Linting")
-	tflint .
-	tflint --module .
+	@tflint .
+	@tflint --module .
+
+# Deep validation step
+# .invokes the provider's API to do a more detailed inspection
+# .SEE: https://github.com/terraform-linters/tflint/blob/master/docs/guides/advanced.md#deep-checking
+validate_deep:
+	$(call echoinfo, "[INFO] .Linting - deep scan")
+	@tflint --deep .
+	@tflint --deep --module .
 
 plan: validate
 	\$(call echoinfo, "[INFO] Planing infrastructure")
