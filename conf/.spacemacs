@@ -2,6 +2,9 @@
 ;; This file is loaded by Spacemacs at startup.
 ;; It must be stored in your home directory.
 
+;; Force English, since system defaults seems to be broken - "en_DE.UTF-8" is not available.
+(setenv "LANG" "en_US.UTF-8")
+
 (defun dotspacemacs/layers ()
   "Configuration Layers declaration.
 You should not put any user code in this function besides modifying the variable
