@@ -2,8 +2,12 @@
 # name: Terraform Tags
 # key: tags
 # --
-tags = \{
-  Name = \"\$1-\$\{var.unique_postfix\}\"
-  Environment = \"\$\{var.environment\}\"
-\}
+tags = {
+  Name        = "\${var.tag_name}"
+  App         = "\${var.tag_app}"
+  Environment = "\${var.tag_environment}"
+  Team        = "\${var.tag_team}"
+  PII         = "\${var.tag_pii}"
+  IaC         = "\${var.tag_vcs}"
+}
 $0
