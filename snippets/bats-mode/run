@@ -9,7 +9,6 @@ echo "Status Code: " \$status
 echo "Output:      " \$output
 
 # Check for none error status code.
-[ "\$status" -eq 0 ]
+assert_sucess
 local expected_output="$2"
-[[ "\$\{output\}" = *"\$\{expected_output\}"* ]]
-$0
+assert_output --partial "${expected_output}"
