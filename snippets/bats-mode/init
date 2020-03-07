@@ -1,0 +1,45 @@
+# -*- mode: snippet -*-
+# name: init
+# key: init
+# --
+#!/usr/bin/env bats
+
+command -v brew >/dev/null 2>&1 || ENVIRONMENT_LOCAL=false
+if [[ "\${ENVIRONMENT_LOCAL}" == "false" ]]; then
+   load "/test/test_helper/bats-support/load.bash"
+   load "/test/test_helper/bats-assert/load.bash"
+   load "/test/test_helper/bats-file/load.bash"
+else
+   TEST_BREW_PREFIX="$(brew --prefix)"
+   load "\${TEST_BREW_PREFIX}/lib/bats-support/load.bash"
+   load "\${TEST_BREW_PREFIX}/lib/bats-assert/load.bash"
+   load "\${TEST_BREW_PREFIX}/lib/bats-file/load.bash"
+fi
+
+function setup() {
+   $3
+}
+
+function teardown() {
+   $4
+}
+
+@test "$1" {
+   run $2
+   assert_success
+}
+
+@test "Check for output" {
+   run $5
+   assert_output --partial $6
+}
+
+@test "Check for files and directories" {
+   assert_file_exist $7
+}
+
+@test "Check with generic assert" {
+   assert [ -z "\$var" ] # check if empty
+}
+
+$0
