@@ -11,6 +11,6 @@ set -o nounset
 
 # Predefine variables for current file and dir
 readonly _dir="\$(cd "\$(dirname "\${BASH_SOURCE[0]}")" && pwd)"
-readonly _file="\${__dir}/\$(basename "\${BASH_SOURCE[0]}")"
-readonly _base="\$(basename \${__file} .sh)"
-readonly _root="\$(cd "\$(dirname "\${__dir}")" && pwd)"
+readonly _file="\${_dir}/\$(basename "\${BASH_SOURCE[0]}")"
+readonly _base="\$(basename \${_file} .sh)"
+readonly _root="\$(cd "\$(dirname "\${_dir}")" && pwd)"
