@@ -1,0 +1,56 @@
+# -*- mode: snippet -*-
+# name: COS Infrastructure Examples
+# key: cos_make
+# --
+# OVERVIEW
+#
+# Makefile to execute $1-example including helper to verify functionality.
+
+nomad_job_dir:=../jobs
+
+TF_PATH_BASE:=.
+TF_PATH_MODULES:=../../modules
+
+tf_plan:=cos.plan
+
+deploy_profile:=default
+region:=us-east-1
+# TODO: Extract AMI-ID from 'make ami' step
+ami_id:=ami-0ca4e64d014776839
+
+all: ami validate infrastructure nomad consul check_completion fabio test
+
+versions:
+	@terraform -version
+	@tflint --version
+
+init:
+	terraform init
+
+validate: init
+	terraform validate
+	terraform fmt -write=false
+
+	cd "\$(PATH_MODULES)" && terraform fmt -write=false -recursive
+
+	tflint \$(TF_PATH_BASE)
+	tflint --module \$(TF_PATH_BASE)
+
+ami:
+	make -f \$(TF_PATH_MODULES)/ami2/Makefile ami
+
+infrastructure: validate
+	terraform plan -out \$(tf_plan) -var deploy_profile=\$(deploy_profile) -var ami_id=\$(ami_id) -var aws_region=\$(region)
+	terraform apply \$(tf_plan)
+
+destroy:
+	terraform destroy -var deploy_profile=\$(deploy_profile) -var ami_id=\$(ami_id) -var aws_region=\$(region) -auto-approve
+
+# FIXME: NOT WORKING
+nomad:
+	nomad_dns=$(terraform output nomad_ui_alb_dns)
+	export NOMAD_ADDR=http://$nomad_dns
+	echo ${NOMAD_ADDR}
+
+fabio:
+	nomad run $(nomad_job_dir)/fabio.nomad
