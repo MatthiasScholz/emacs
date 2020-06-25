@@ -142,10 +142,6 @@
 ;; Activate Flycheck globally
 (setq flycheck-global-modes t)
 
-;; Use more themeing
-;; https://github.com/domtronn/all-the-icons.el
-;; TODO (require 'all-the-icons)
-
 ;; Helm configuration
 ;; https://github.com/syohex/emacs-helm-ag
 ;; helm-ag-base-command:
