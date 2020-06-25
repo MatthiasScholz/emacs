@@ -27,6 +27,9 @@
 ;;   define the functions `orgmode/pre-init-PACKAGE' and/or
 ;;   `orgmode/post-init-PACKAGE' to customize the package as it is loaded.
 
+;; - FIXME
+;;   - An error occurred while post-configuring org in layer orgmode (error: (void-variable org-agenda-file-regexp))
+
 ;;; Code:
 
 (defconst orgmode-packages
@@ -50,15 +53,16 @@
   ;; MacOSX
   (when (memq system-type '(darwin))
     (setq org-directory "~/Documents/Notes")
-    ;; NOT WORKING recursively:
-    ;; (setq org-agenda-files '("~/Dropbox/Notes"))
+    ;; FIXME NOT WORKING recursively:
+    (setq org-agenda-files '("~/Documents/Notes"))
 
-    (setq org-agenda-files (apply 'append
-			                            (mapcar
-			                             (lambda (directory)
-				                             (directory-files-recursively
-				                              directory org-agenda-file-regexp))
-			                             '("~/Documents/Notes"))))
+    ;; NOT WORKING: An error occurred while post-configuring org in layer orgmode (error: (void-variable org-agenda-file-regexp))
+    ;; (setq org-agenda-files (apply 'append
+		;; 	                            (mapcar
+		;; 	                             (lambda (directory)
+		;; 		                             (directory-files-recursively
+		;; 		                              directory org-agenda-file-regexp))
+		;; 	                             '("~/Documents/Notes"))))
     )
 
   (setq org-archive-location "archive/%s::")
