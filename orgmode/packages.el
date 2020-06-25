@@ -34,7 +34,7 @@
     org
     org-inlinetask
     deft
-    org-brain
+    ;; NOT WORKING org-brain
     )
   )
 
@@ -164,19 +164,21 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
     )
   )
 
-(defun orgmode/init-org-brain ()
-  (use-package org-brain :ensure t
-    :init
-    (setq org-brain-path org-directory)
-    :config
-    (setq org-id-track-globally t)
-    (setq org-id-locations-file (concat org-brain-path "/.org-id-locations"))
-    (push '("b" "Brain" plain (function org-brain-goto-end)
-            "* %i%?" :empty-lines 1)
-          org-capture-templates)
-    (setq org-brain-visualize-default-choices 'all)
-    (setq org-brain-title-max-length 24)
-    )
-  )
+;; NOT WORKING: Error (use-package): org-brain/:config: Symbol’s value as variable is void: org-capture-templates
+;; (defun orgmode/post-init-org-brain ()
+;;   (use-package org-brain :ensure t
+;;     :init
+;;     (setq org-brain-path org-directory)
+;;     :config
+;;     (setq org-id-track-globally t)
+;;     (setq org-id-locations-file (concat org-brain-path "/.org-id-locations"))
+;;     (push '("b" "Brain" plain (function org-brain-goto-end)
+;;             "* %i%?" :empty-lines 1)
+;;           org-capture-templates)
+;;     (setq org-brain-visualize-default-choices 'all)
+;;     (setq org-brain-title-max-length 24)
+;;     )
+;;   )
+
 
 ;;; packages.el ends here
