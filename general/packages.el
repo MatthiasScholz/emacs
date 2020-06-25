@@ -86,10 +86,6 @@
 
 
 ;; Keybindings
-(global-set-key (kbd "M-s o") 'helm-occur)
-(global-set-key (kbd "C-x C-b") 'helm-buffers-list)
-
-
 ;; UNUSED (global-set-key (kbd "C-x C-b") 'helm-buffers-list)
 
 ;; Overwrite selection with pasted text
