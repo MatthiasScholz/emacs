@@ -35,6 +35,7 @@
     org-inlinetask
     deft
     ;; NOT WORKING org-brain
+    ;; DISABLED org-trello
     )
   )
 
@@ -180,5 +181,23 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
 ;;     )
 ;;   )
 
+;; DISABLED -> https://develop.spacemacs.org/layers/+emacs/org/README.html#trello-support
+;; Configure org-trello
+;; Execute: M-x org-trello-install-key-and-token to configure connection to trello
+;; (defun orgmode/post-init-org-trello ()
+;; (use-package org-trello :ensure t
+;;    :config
+;;    ;; org-trello major mode for all .trello files
+;;    ;; https://org-trello.github.io/usage.html#automatic-org-trello-files-in-emacs
+;;    (add-to-list 'auto-mode-alist '("\\.trello$" . org-mode))
+;;
+;;    ;; add a hook function to check if this is trello file, then activate the org-trello minor mode.
+;;    (add-hook 'org-mode-hook
+;;              (lambda ()
+;;                (let ((filename (buffer-file-name (current-buffer))))
+;;                  (when (and filename (string= "trello" (file-name-extension filename)))
+;;                    (org-trello-mode)))))
+;;    )
+;;  )
 
 ;;; packages.el ends here
