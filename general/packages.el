@@ -39,8 +39,9 @@
     keyfreq
     compile
     company
-    restclient
-    company-restclient
+    ;; UNUSED restclient
+    ;; UNUSED company-restclient
+    vlf
     )
   )
 
@@ -61,19 +62,19 @@
 (defun general/init-helm-mt ()
   (use-package helm-mt
     :after helm multi-term))
-
-;; REST Client
-;; https://github.com/pashky/restclient.el
-(defun general/init-restclient ()
-  (use-package restclient))
-
-;; REST Client Completion
-;; https://github.com/iquiw/company-restclient
-(defun general/init-company-restclient ()
-  (use-package company-restclient)
-  (add-to-list 'company-backends 'company-restclient)
   )
 
+;; UNUSED ;; REST Client
+;; UNUSED ;; https://github.com/pashky/restclient.el
+;; UNUSED (defun general/init-restclient ()
+;; UNUSED   (use-package restclient))
+;; UNUSED
+;; UNUSED ;; REST Client Completion
+;; UNUSED ;; https://github.com/iquiw/company-restclient
+;; UNUSED (defun general/init-company-restclient ()
+;; UNUSED   (use-package company-restclient)
+;; UNUSED   (add-to-list 'company-backends 'company-restclient)
+;; UNUSED   )
 
 ;; generic company configuration
 (defun general/post-init-company ()
