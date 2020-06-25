@@ -90,11 +90,7 @@
 (global-set-key (kbd "C-x C-b") 'helm-buffers-list)
 
 
-;; Neo2 configuration:
-(setq ns-right-alternate-modifier nil)
-(setq ns-alternate-modifier 'meta)
-;; Deactivte special space of the layer 3
-(global-set-key (kbd " ") " ")
+;; UNUSED (global-set-key (kbd "C-x C-b") 'helm-buffers-list)
 
 ;; Overwrite selection with pasted text
 (delete-selection-mode 1)
