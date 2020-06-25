@@ -134,10 +134,6 @@
 ;; Activate Flycheck globally
 (setq flycheck-global-modes t)
 
-;; Helm configuration
-;; https://github.com/syohex/emacs-helm-ag
-;; helm-ag-base-command:
-;;  ag --vimgrep --line-numbers -S --hidden --color --nogroup %s %s %s
 
 
 ;;; packages.el ends here
