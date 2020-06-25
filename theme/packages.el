@@ -79,13 +79,15 @@ Each entry is either:
     (doom-themes-treemacs-config)
 
     ;; Corrects (and improves) org-mode's native fontification.
-    (doom-themes-org-config))
+    (doom-themes-org-config)
+    )
   )
 
 (defun theme/init-doom-modeline()
   (use-package doom-modeline
     :ensure t
-    :init (doom-modeline-mode 1))
+    :init (doom-modeline-mode 1)
+    )
   )
 
 ;;; packages.el ends here
