@@ -59,9 +59,11 @@
 ;; UNUSED     (setq highlight-symbol-nav-mode 't)
 ;; UNUSED     (setq highlight-symbol-idle-delay 0.1)))
 
+;; NOTE: spacemacs layer `shell' should be activated
 (defun general/init-helm-mt ()
   (use-package helm-mt
-    :after helm multi-term))
+    :after helm multi-term)
+  (spacemacs/set-leader-keys "ot" 'helm-mt)
   )
 
 ;; UNUSED ;; REST Client
