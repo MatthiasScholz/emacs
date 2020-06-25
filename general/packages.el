@@ -52,12 +52,12 @@
 ;; UNUSED (defun general/post-init-paradox ()
 ;; UNUSED   (setq paradox-github-token '53f1f0c65f90f8fea51e9ced4ae49f1dd7f5fffd))
 
-(defun general/init-highlight-symbol ()
-  (use-package highlight-symbol
-    :config
-    (setq global-auto-highlight-symbol-mode 't)
-    (setq highlight-symbol-nav-mode 't)
-    (setq highlight-symbol-idle-delay 0.1)))
+;; UNUSED (defun general/init-highlight-symbol ()
+;; UNUSED   (use-package highlight-symbol
+;; UNUSED     :config
+;; UNUSED     (setq global-auto-highlight-symbol-mode 't)
+;; UNUSED     (setq highlight-symbol-nav-mode 't)
+;; UNUSED     (setq highlight-symbol-idle-delay 0.1)))
 
 (defun general/init-helm-mt ()
   (use-package helm-mt
