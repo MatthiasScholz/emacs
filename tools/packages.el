@@ -35,7 +35,7 @@
     company-terraform
     dockerfile-mode
     docker-tramp
-    plantuml-mode
+;;    plantuml-mode
     org-mode
     sh-mode
     bats-mode
@@ -72,15 +72,16 @@
   (use-package org-mode)
   )
 
-(defun tools/init-plantuml-mode ()
-  (use-package plantuml-mode)
-  :config
-  (progn
-    (set plantuml-default-exec-mode 'executable)
-    (add-to-list
-     'org-src-lang-modes '("plantuml" . plantuml))
-    )
-  )
+;; NOT WORKING
+;;(defun tools/init-plantuml-mode ()
+;;  (use-package plantuml-mode)
+;;  :config
+;;  (progn
+;;    (set plantuml-default-exec-mode 'executable)
+;;    (add-to-list
+;;     'org-src-lang-modes '("plantuml" . plantuml))
+;;    )
+;;  )
 
 ;; Activating indirectly shellcheck via flycheck
 (defun tools/post-init-sh-mode ()
