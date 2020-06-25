@@ -135,5 +135,10 @@
 (setq flycheck-global-modes t)
 
 
+;; Activate Very-Large-File mode support: https://github.com/m00natic/vlfi
+;; C-c C-v *
+;; - o|s|r - to search
+(defun general/init-vlf ()
+  (use-package vlf))
 
 ;;; packages.el ends here
