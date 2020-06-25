@@ -34,7 +34,7 @@
     highlight-symbol
     helm-mt
     company
-    paradox
+    ;; UNUSED paradox
     hcl-mode
     keyfreq
     compile
@@ -47,9 +47,9 @@
 (defun general/init-hcl-mode ()
   (use-package hcl-mode))
 
-;; FIXME: Storing the key in an repositroy is generally a bad idea!
-(defun general/post-init-paradox ()
-  (setq paradox-github-token '53f1f0c65f90f8fea51e9ced4ae49f1dd7f5fffd))
+;; UNUSED ;; FIXME: Storing the key in an repositroy is generally a bad idea!
+;; UNUSED (defun general/post-init-paradox ()
+;; UNUSED   (setq paradox-github-token '53f1f0c65f90f8fea51e9ced4ae49f1dd7f5fffd))
 
 (defun general/init-highlight-symbol ()
   (use-package highlight-symbol
