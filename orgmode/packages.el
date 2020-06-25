@@ -85,6 +85,7 @@
   (setq org-default-priority ?B)
 
   ;; Open Agenda at startup
+  ;; https://stackoverflow.com/questions/23528287/how-to-display-custom-agenda-view-on-emacs-startup
   (add-hook 'after-init-hook (lambda () (org-agenda nil "d")))
 
   ;; Configure capture
