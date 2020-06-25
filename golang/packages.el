@@ -73,9 +73,9 @@
   (use-package golint)
   )
 
-;;; Go mode and imenu
-;;; Support multi line golang function signatures
-;;; https://emacs.stackexchange.com/questions/30797/imenu-is-missing-multi-line-golang-function-signatures
+;; Go mode and imenu
+;; Support multi line golang function signatures
+;; https://emacs.stackexchange.com/questions/30797/imenu-is-missing-multi-line-golang-function-signatures
 (defun my-go-mode-hook ()
                                         ; Custom imenu regexes
   (setq imenu-generic-expression
