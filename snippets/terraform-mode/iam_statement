@@ -1,0 +1,14 @@
+# -*- mode: snippet -*-
+# name: IAM Role Statement
+# key: iam_statement
+# --
+statement {
+   sid = "AccessTo$1"
+   effect = "Allow"
+
+   actions = [
+      "$2"
+   ]
+
+   resources = ["*$0"]
+}

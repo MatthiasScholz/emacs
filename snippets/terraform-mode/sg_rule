@@ -1,0 +1,15 @@
+# -*- mode: snippet -*-
+# name: sg_rule
+# key: sg_rule
+# --
+resource "aws_security_group_rule" "$1_$2_ingress_rule" {
+   description = "Only allow secure connections from the NLB on port ${var.$3}"
+   type        = "ingress"
+   from_port   = "${var.$3}"
+   to_port     = "${var.$3}"
+   protocol    = "tcp"
+   cidr_blocks = ["$4"]
+
+   security_group_id = "${aws_security_group.$1_$5_sg.id}"
+}
+$0
