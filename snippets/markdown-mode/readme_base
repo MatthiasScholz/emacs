@@ -1,0 +1,39 @@
+# -*- mode: snippet -*-
+# name: readme_base
+# key: readme_base
+# --
+# $1 Base Collection Repository
+
+Organizing a collection of repositories in a base folder.
+The repositories can be updated using git submodules.
+
+## Usage
+
+### Status
+
+```
+git submodule foreach git status
+```
+
+### Pull Changes
+
+```
+git submodule foreach git pull --rebase --autostash origin <branch_name>
+```
+
+### Checkout
+
+```
+git submodule foreach git checkout dev
+```
+
+### Adding
+
+```
+git submodule add <repo_url>
+```
+
+## Reference
+
+- https://dev.to/rmpato/a-new-use-case-for-git-submodules-3do1
+- https://magit.vc/manual/magit/Submodule-Transient.html#Submodule-Transient
