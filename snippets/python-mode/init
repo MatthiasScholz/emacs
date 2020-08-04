@@ -15,39 +15,41 @@ import logging
 logging.basicConfig(format='%(asctime)s - %(levelname)s :: %(message)s')
 logging.getLogger().setLevel(level=logging.DEBUG)
 
+
 def $5():
-   """
-   $6
-   """
-   $0
-   return False
+    """
+    $6
+    """
+    $0
+    return False
+
 
 if __name__ == "__main__":
-   # execute only if run as a script
-   parser = argparse.ArgumentParser()
-   # Default parameter
-   parser.add_argument(
-       "-l",
-       "--loglevel",
-       help="Setting the log level.",
-       choices=["debug", "info", "warn", "error", "fatal", "critical"],
-       default="info")
+    # execute only if run as a script
+    parser = argparse.ArgumentParser()
+    # Default parameter
+    parser.add_argument(
+        "-l",
+        "--loglevel",
+        help="Setting the log level.",
+        choices=["debug", "info", "warn", "error", "fatal", "critical"],
+        default="info")
 
-   # -------------------------------
-   # CLI commands and parameter
-   parser.add_argument("-$1", "--$2", help="$3")
+    # -------------------------------
+    # CLI commands and parameter
+    parser.add_argument("-$1", "--$2", help="$3")
 
-   # Set the function which should be executed
-   parser.set_defaults(func=$5)
+    # Set the function which should be executed
+    parser.set_defaults(func=$5)
 
-   # -------------------------------
-   # Parsing the given cli parameter
-   args = parser.parse_args()
+    # -------------------------------
+    # Parsing the given cli parameter
+    args = parser.parse_args()
 
-   # Configure Logging
-   log_lvl = getattr(logging, args.loglevel.upper(), None)
-   logging.getLogger().setLevel(level=log_lvl)
+    # Configure Logging
+    log_lvl = getattr(logging, args.loglevel.upper(), None)
+    logging.getLogger().setLevel(level=log_lvl)
 
-   # Execute CLI command
-   if not args.func(args):
-       sys.exit(1)
+    # Execute CLI command
+    if not args.func(args):
+        sys.exit(1)
