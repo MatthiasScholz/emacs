@@ -37,7 +37,8 @@ if __name__ == "__main__":
 
     # -------------------------------
     # CLI commands and parameter
-    parser.add_argument("-$1", "--$2", help="$3")
+    parser.add_argument("-$1", "--$2",
+                        help="$3")
 
     # Set the function which should be executed
     parser.set_defaults(func=$5)
