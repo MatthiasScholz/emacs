@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: Logging Global
+# key: log_g
+# --
+# The default level is WARNING
+logging.basicConfig(format='%(asctime)s - %(levelname)s :: %(message)s')
+logging.getLogger().setLevel(level=logging.${1:INFO})  # alt: DEBUG, WARNING, ERROR
+$0
