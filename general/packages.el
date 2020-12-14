@@ -88,8 +88,10 @@
 
 
 ;; Keybindings
-;; UNUSED (global-set-key (kbd "C-x C-b") 'helm-buffers-list)
+;; Overwrite unused CRM Buffer listing default
+(global-set-key (kbd "C-x C-b") 'helm-buffers-list)
 
+;; TODO Find out what it does.
 ;; Overwrite selection with pasted text
 (delete-selection-mode 1)
 
@@ -108,7 +110,7 @@
       ;; to improve speed a little bit
       (setq w32-get-true-file-attributes nil)
 
-      ;; Helm ag 
+      ;; Helm ag
       (add-to-list 'exec-path "D:/Software/PortableApps/ag/")
       )
   )
