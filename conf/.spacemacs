@@ -32,7 +32,37 @@ This function should only modify configuration layer settings."
 
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
-   '(html
+   '(
+     lsp
+     ruby
+     csv
+     html
+     ;; TODO Move to myjavascript layer
+     (javascript :variables
+                 ;; Helper
+                 javascript-import-tool 'import-js
+                 ;; TODO Add support for lsp
+                 javascript-backend 'tern
+                 ;; Formatter
+                 javascript-fmt-on-save t
+                 javascript-fmt-tool 'prettier
+                 ;; Linter
+                 javascript-linter 'eslint
+                 javascript-lsp-linter nil
+                 js2-mode-show-strict-warnings nil
+                 ;; Add node_modules/.bin to exec_path
+                 node-add-modules-path t
+                 )
+     (typescript :variables
+                 ;; Helper
+                 ;; TODO Add support for lsp
+                 typescript-backend 'tern
+                 ;; Formatter
+                 typescript-fmt-on-save t
+                 typescript-fmt-tool 'prettier
+                 ;; Linter
+                 typescript-linter 'eslint
+                 )
      ;; DISABLED theme
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
@@ -53,7 +83,6 @@ This function should only modify configuration layer settings."
      multiple-cursors
      org
      yaml
-     lsp
      (python :variables
              python-test-runner 'pytest  ;; nose is deprecated
              python-format-on-save t)    ;; FIXME not working
@@ -61,6 +90,7 @@ This function should only modify configuration layer settings."
      golang
      terraform
      docker
+     twitter
      ;; (shell :variables
      ;;        shell-default-height 30
      ;;        shell-default-position 'bottom)
@@ -68,10 +98,12 @@ This function should only modify configuration layer settings."
      syntax-checking
      version-control
      treemacs
+     slack
      ;; private layers:
      general
      orgmode
      tools
+     tramp
      )
 
    ;; List of additional packages that will be installed without being
@@ -212,7 +244,7 @@ It should only modify the values of Spacemacs settings."
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press `SPC T n' to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes '(doom-vibrant
+   dotspacemacs-themes '(doom-monokai-spectrum
                          spacemacs-dark
                          spacemacs-light)
 
@@ -524,6 +556,16 @@ before packages are loaded."
   (setq ns-right-alternate-modifier nil)
   (setq ns-alternate-modifier 'meta)
   (global-set-key (kbd " ") " ")
+
+  ;; TODO Refactor to put in separate layer
+  ;; Slack Authentication - Template
+  ;;(slack-register-team
+  ;; :name "<slack_name>"
+  ;; :default t
+  ;; :client-id "matthias.scholz@<email>"
+  ;; :client-secret "<client_secret>"
+  ;; :token "<token>"
+  ;; :subscribed-channels '(general slackbot <channel_name>))
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
@@ -539,12 +581,11 @@ This function is called at the very end of Spacemacs initialization."
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
-   (quote
-    ("fa3bdd59ea708164e7821574822ab82a3c51e262d419df941f26d64d015c90ee" default)))
+   '("5b809c3eae60da2af8a8cfba4e9e04b4d608cb49584cb5998f6e4a1c87c057c4" "d74c5485d42ca4b7f3092e50db687600d0e16006d8fa335c69cf4f379dbd0eee" "71e5acf6053215f553036482f3340a5445aee364fb2e292c70d9175fb0cc8af7" "e72f5955ec6d8585b8ddb2accc2a4cb78d28629483ef3dcfee00ef3745e2292f" "99ea831ca79a916f1bd789de366b639d09811501e8c092c85b2cb7d697777f93" "79278310dd6cacf2d2f491063c4ab8b129fee2a498e4c25912ddaa6c3c5b621e" "2f1518e906a8b60fac943d02ad415f1d8b3933a5a7f75e307e6e9a26ef5bf570" "fa3bdd59ea708164e7821574822ab82a3c51e262d419df941f26d64d015c90ee" default))
  '(evil-want-Y-yank-to-eol nil)
+ '(lsp-terraform-server "~/bin/terraform-lsp")
  '(package-selected-packages
-   (quote
-    (command-log-mode web-mode web-beautify tagedit slim-mode scss-mode sass-mode pug-mode prettier-js impatient-mode simple-httpd helm-css-scss haml-mode emmet-mode counsel-css counsel swiper ivy company-web web-completion-data add-node-modules-path golint go-projectile go-dlv helm-mt docker-compose-mode doom-modeline yasnippet-snippets yapfify yaml-mode ws-butler writeroom-mode winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package unfill treemacs-projectile treemacs-persp treemacs-magit treemacs-icons-dired toc-org symon symbol-overlay string-inflection spaceline-all-the-icons smeargle reveal-in-osx-finder restart-emacs rainbow-delimiters pytest pyenv-mode py-isort popwin pippel pipenv pip-requirements pcre2el password-generator paradox overseer osx-trash osx-dictionary osx-clipboard orgit org-projectile org-present org-pomodoro org-mime org-download org-cliplink org-bullets org-brain open-junk-file nameless mwim move-text mmm-mode markdown-toc magit-svn magit-section magit-gitflow macrostep lorem-ipsum live-py-mode link-hint launchctl indent-guide importmagic hybrid-mode hungry-delete htmlize hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-xref helm-themes helm-swoop helm-pydoc helm-purpose helm-projectile helm-org-rifle helm-org helm-mode-manager helm-make helm-ls-git helm-gitignore helm-git-grep helm-flx helm-descbinds helm-company helm-c-yasnippet helm-ag google-translate golden-ratio godoctor go-tag go-rename go-impl go-guru go-gen-test go-fill-struct go-eldoc gnuplot gitignore-templates gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ gh-md fuzzy font-lock+ flyspell-correct-helm flycheck-pos-tip flycheck-package flycheck-elsa flx-ido fill-column-indicator fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-textobj-line evil-surround evil-org evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-cleverparens evil-args evil-anzu eval-sexp-fu emr elisp-slime-nav editorconfig dumb-jump dotenv-mode doom-themes diminish devdocs cython-mode company-terraform company-go company-anaconda column-enforce-mode clean-aindent-mode centered-cursor-mode browse-at-remote blacken auto-yasnippet auto-highlight-symbol auto-dictionary auto-compile aggressive-indent ace-link ace-jump-helm-line ac-ispell))))
+   '(json-navigator hierarchy seeing-is-believing rvm ruby-tools ruby-test-mode ruby-refactor ruby-hash-syntax rubocopfmt rubocop rspec-mode robe rbenv rake minitest enh-ruby-mode posframe chruby bundler inf-ruby rego-mode csv-mode tide typescript-mode tern nodejs-repl livid-mode skewer-mode js2-refactor multiple-cursors js2-mode js-doc import-js grizzl helm-gtags ggtags dap-mode bui counsel-gtags command-log-mode web-mode web-beautify tagedit slim-mode scss-mode sass-mode pug-mode prettier-js impatient-mode simple-httpd helm-css-scss haml-mode emmet-mode counsel-css counsel swiper ivy company-web web-completion-data add-node-modules-path golint go-projectile go-dlv helm-mt docker-compose-mode doom-modeline yasnippet-snippets yapfify yaml-mode ws-butler writeroom-mode winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package unfill treemacs-projectile treemacs-persp treemacs-magit treemacs-icons-dired toc-org symon symbol-overlay string-inflection spaceline-all-the-icons smeargle reveal-in-osx-finder restart-emacs rainbow-delimiters pytest pyenv-mode py-isort popwin pippel pipenv pip-requirements pcre2el password-generator paradox overseer osx-trash osx-dictionary osx-clipboard orgit org-projectile org-present org-pomodoro org-mime org-download org-cliplink org-bullets org-brain open-junk-file nameless mwim move-text mmm-mode markdown-toc magit-svn magit-section magit-gitflow macrostep lorem-ipsum live-py-mode link-hint launchctl indent-guide importmagic hybrid-mode hungry-delete htmlize hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-xref helm-themes helm-swoop helm-pydoc helm-purpose helm-projectile helm-org-rifle helm-org helm-mode-manager helm-make helm-ls-git helm-gitignore helm-git-grep helm-flx helm-descbinds helm-company helm-c-yasnippet helm-ag google-translate golden-ratio godoctor go-tag go-rename go-impl go-guru go-gen-test go-fill-struct go-eldoc gnuplot gitignore-templates gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ gh-md fuzzy font-lock+ flyspell-correct-helm flycheck-pos-tip flycheck-package flycheck-elsa flx-ido fill-column-indicator fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-textobj-line evil-surround evil-org evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-cleverparens evil-args evil-anzu eval-sexp-fu emr elisp-slime-nav editorconfig dumb-jump dotenv-mode doom-themes diminish devdocs cython-mode company-terraform company-go company-anaconda column-enforce-mode clean-aindent-mode centered-cursor-mode browse-at-remote blacken auto-yasnippet auto-highlight-symbol auto-dictionary auto-compile aggressive-indent ace-link ace-jump-helm-line ac-ispell)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
