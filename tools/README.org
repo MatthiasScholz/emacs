@@ -7,6 +7,7 @@
 * Table of Contents                                        :TOC_4_gh:noexport:
 - [[#description][Description]]
 - [[#install][Install]]
+  - [[#prerequisites][Prerequisites]]
 - [[#key-bindings---currently-unused][Key bindings - Currently Unused]]
 
 * Description
@@ -17,6 +18,12 @@ This layer does wonderful things:
 To use this configuration layer, add it to your =~/.spacemacs=. You will need to
 add =tools= to the existing =dotspacemacs-configuration-layers= list in this
 file.
+
+** Prerequisites
+
+#+BEGIN_SRC sh
+brew install opa
+#+END_SRC
 
 * Key bindings - Currently Unused
 

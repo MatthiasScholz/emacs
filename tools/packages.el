@@ -40,6 +40,9 @@
     sh-mode
     bats-mode
     markdown-mode
+    rego-mode
+    javascript
+    ;; FIXME NOT WORKING xterm-color
     )
   )
 
@@ -110,4 +113,51 @@
     )
   )
 
+;; Activate support for Open Policy Agent
+(defun tools/post-init-rego-mode ()
+  (use-package rego-mode
+    :ensure t
+    :custom
+    (rego-repl-executable "opa")
+    (rego-opa-command "opa")
+    (add-to-list 'auto-mode-alist '("\\.rego\\'" . rego-mode))
+    )
+  )
+
+;; Activate javascript import statement verification
+;; https://develop.spacemacs.org/layers/+lang/javascript/README.html
+;; https://develop.spacemacs.org/layers/+tools/import-js/README.html
+(defun tools/post-init-javascript()
+  (use-package terraform-mode
+    :config
+    (progn
+      (javascript :variables javascript-fmt-tool 'prettier)
+      (javascript :variables javascript-fmt-on-save t)
+      (javascript :variables javascript-import-tool 'import-js)
+      (javascript :variables javascript-backend 'lsp
+                  js2-mode-show-strict-warnings nil
+                  js2-mode-show-parse-errors nil)
+    )
+  )
+)
+;; or
+;;(setq-default dotspacemacs-configuration-layers '(
+;;                                                  (javascript :variables
+;;                                                              javascript-fmt-tool 'prettier)))
+
+
+;; FIXME Not working since not a minor mode
+;; - https://emacs.stackexchange.com/questions/58522/how-to-ediff-buffer-with-ansi-colors-script-output-ediff-file-works
+;; - https://stackoverflow.com/questions/13945782/emacs-auto-minor-mode-based-on-extension
+;; Colorize .log files
+;; (defun tools/post-init-xterm-color ()
+;;   (use-package xterm-color
+;;     :config
+;;     (progn
+;; (add-hook 'find-file-hook
+;;           (lambda ()
+;;             (when (string= (file-name-extension buffer-file-name) "log")
+;;               (xterm-color +1)))))
+;; )
+;;   )
 ;;; packages.el ends here
