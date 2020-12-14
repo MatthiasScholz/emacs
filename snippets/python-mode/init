@@ -4,6 +4,12 @@
 # --
 #!/usr/bin/env python3
 
+"""
+$8
+"""
+
+__version__="`(format-time-string "%Y-%m-%d")`"
+
 import argparse
 import os
 import subprocess
@@ -13,7 +19,7 @@ import logging
 
 # The default level is WARNING
 logging.basicConfig(format='%(asctime)s - %(levelname)s :: %(message)s')
-logging.getLogger().setLevel(level=logging.DEBUG)
+loglevel = "info"  # Default log level
 
 
 def $5():
@@ -22,6 +28,14 @@ def $5():
     """
     $0
     return False
+
+
+def setLogLevel(loglevel="info"):
+    # Configure logging
+    numeric_lvl = getattr(logging, loglevel.upper(), None)
+    logging.getLogger().setLevel(level=numeric_lvl)
+    # Update global verbosity state
+    loglevel = loglevel
 
 
 if __name__ == "__main__":
@@ -48,8 +62,7 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     # Configure Logging
-    log_lvl = getattr(logging, args.loglevel.upper(), None)
-    logging.getLogger().setLevel(level=log_lvl)
+    setLogLevel(args.loglevel)
 
     # Execute CLI command
     if not args.func(args):
