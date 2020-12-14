@@ -1,0 +1,14 @@
+# -*- mode: snippet -*-
+# name: Docker Compose Init
+# key: init_dc
+# --
+version: "3.8"
+services:
+  $1:
+    build: .
+    image: $1
+    stdin_open: true # docker run -i
+    tty: true        # docker run -t
+    volumes:
+      - ~/.aws/:/root/.aws/:ro
+$0
