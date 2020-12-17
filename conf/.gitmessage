@@ -1,0 +1,47 @@
+# <Type>: <Message> | <Committer>/<Contributer> | <Jira-Ticket-ID>
+# Example:
+# :sparkles: Created sloscomm account | ms/am | OPS-1279
+# |<----  Using a Maximum Of 62 Characters               ---->|
+
+
+# Explain why this change is being made
+# |<----   Try To Limit Each Line to a Maximum Of 72 Characters   ---->|
+
+# Provide links or keys to any relevant tickets, articles or other resources
+# Example: Github issue #23
+
+# Provide commiters/contributers contacts
+# Example: Email: matthias.scholz@thoughtworks.com
+
+# --- COMMIT END ---
+# Gitmoji types (https://gitmoji.carloscuesta.me)
+#    :sparkles:                  (new feature)
+#    :construction:              (Determine work in progress.)
+#    :poop:                      (Write bad code that needs to be improved.)
+#    :bug:                       (bug fix)
+#    :recycle:                   (refactoring code)
+#    :white_check_mark:          (adding or refactoring tests; no code change)
+#    :ok_hand:                   (Updating code due to code review changes.)
+#    :wastebasket:               (Removed deprecate code/files.)
+#
+#    :art:                       (formatting, missing semi colons, etc; no code change)
+#    :pencil:                    (changes to documentation)
+#    :see_no_evil:               (Adding or updating a .gitignore file)
+#
+#    :twisted_rightwards_arrows: (Merging branches)
+#
+#    :pushpin:                   (Pin dependencies to specific versions.)
+#    :bookmark:                  (Releasing / Version tags.)
+#
+#    :loud_sound:                (Add or update logs.)
+#    :mute:                      (Remove logs.)
+#
+# --------------------
+# Remember to
+#    Capitalize the subject line
+#    Use the imperative mood in the subject line
+#    Do not end the subject line with a period
+#    Separate subject from body with a blank line
+#    Use the body to explain what and why vs. how
+#    Can use multiple lines with "-" for bullet points in body
+# --------------------
