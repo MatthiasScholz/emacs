@@ -1,6 +1,4 @@
-# <Type>: <Message> | <Committer>/<Contributer> | <Jira-Ticket-ID>
-# Example:
-# :sparkles: Created sloscomm account | ms/am | OPS-1279
+# <Type>: <Message>
 # |<----  Using a Maximum Of 62 Characters               ---->|
 
 
@@ -11,7 +9,7 @@
 # Example: Github issue #23
 
 # Provide commiters/contributers contacts
-# Example: Email: matthias.scholz@thoughtworks.com
+# Example: Email: matthias.scholz@gmail.com
 
 # --- COMMIT END ---
 # Gitmoji types (https://gitmoji.carloscuesta.me)
