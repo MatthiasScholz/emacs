@@ -33,6 +33,7 @@
   '(
     origami
     helm-mt
+    helm-swoop
     company
     ;; UNUSED paradox
     hcl-mode
@@ -97,6 +98,7 @@
 
 
 ;; Keybindings
+(global-set-key (kbd "M-o o") 'helm-occur)
 ;; Overwrite unused CRM Buffer listing default
 (global-set-key (kbd "C-x C-b") 'helm-buffers-list)
 
