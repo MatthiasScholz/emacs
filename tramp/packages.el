@@ -37,7 +37,7 @@
 
 (defconst tramp-packages
   '(tramp
-    dired
+    ;; UNUSED dired
     )
   )
 
@@ -81,6 +81,10 @@
                  (tramp-file-name-user vec)
                  (tramp-file-name-host vec))))
     (concat "/sudo:root@localhost:" tempfile)))
+
+;; TODO UNTESTED, maybe unneeded
+;;(defun general/init-dired ()
+;;  (use-package dired))
 
 ;;(define-key dired-mode-map [s-return] 'sudo-edit-current-file)
 
