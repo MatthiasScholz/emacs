@@ -32,10 +32,10 @@
 (defconst general-packages
   '(
     origami
+    ;; FIXME highlight-symbol
     helm-mt
     helm-swoop
     company
-    ;; UNUSED paradox
     hcl-mode
     keyfreq
     compile
@@ -61,7 +61,7 @@
 ;; UNUSED ;; FIXME: Storing the key in an repositroy is generally a bad idea!
 ;; UNUSED (defun general/post-init-paradox ()
 ;; UNUSED   (setq paradox-github-token '53f1f0c65f90f8fea51e9ced4ae49f1dd7f5fffd))
-
+;; FIXME NOT WORKING
 ;; UNUSED (defun general/init-highlight-symbol ()
 ;; UNUSED   (use-package highlight-symbol
 ;; UNUSED     :config
@@ -148,6 +148,22 @@
 
 ;; Activate Flycheck globally
 (setq flycheck-global-modes t)
+
+;; TODO CHeck if set somewhere else
+;; ;; Neo2 configuration:
+;; (setq ns-right-alternate-modifier nil)
+;; (setq ns-alternate-modifier 'meta)
+;; ;; Deactivte special space of the layer 3
+;; (global-set-key (kbd " ") " ")
+
+;; https://github.com/domtronn/all-the-icons.el
+;; TODO (require 'all-the-icons)
+
+;; TODO Helm configuration
+;; https://github.com/syohex/emacs-helm-ag
+;; helm-ag-base-command:
+;;  ag --vimgrep --line-numbers -S --hidden --color --nogroup %s %s %s
+
 
 
 ;; Activate Very-Large-File mode support: https://github.com/m00natic/vlfi
