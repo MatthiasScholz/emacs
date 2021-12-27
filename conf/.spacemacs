@@ -63,6 +63,8 @@ This function should only modify configuration layer settings."
                  ;; Linter
                  typescript-linter 'eslint
                  )
+     ;; FIXME not fully working:
+     ;; myjavascript
      ;; DISABLED theme
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
