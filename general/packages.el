@@ -32,6 +32,7 @@
 (defconst general-packages
   '(
     highlight-symbol
+    origami
     helm-mt
     company
     ;; UNUSED paradox
@@ -44,6 +45,15 @@
     vlf
     )
   )
+
+;; Folding everywhere
+;; https://github.com/gregsexton/origami.el
+(defun general/post-init-origami ()
+  (use-package origami
+    :config
+    (setq global-origami-mode 't)
+    (global-set-key (kbd "TAB") 'origami-recursively-toggle-node)))
+
 
 (defun general/init-hcl-mode ()
   (use-package hcl-mode))
