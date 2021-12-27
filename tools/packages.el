@@ -42,7 +42,22 @@
     markdown-mode
     rego-mode
     javascript
+    v-mode
     ;; FIXME NOT WORKING xterm-color
+    )
+  )
+
+
+
+;; V lang
+;; https://github.com/damon-kwok/v-mode
+(defun tools/init-v-mode()
+  (use-package v-mode
+    :config
+    :bind-keymap
+    ("M-m a t v" . v-mode-menu)
+    ;;("C-c C-f" . v-format-buffer)
+    :mode ("\\.v?v\\.vsh\\'" . 'v-mode)
     )
   )
 
