@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: AWS Secret Handling Action Copy
+# key: aws_sec_action_write
+# --
+{
+   "kind": "write",
+   "dest": "$1"
+}$0

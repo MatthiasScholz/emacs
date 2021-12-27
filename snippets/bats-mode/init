@@ -3,6 +3,15 @@
 # key: init
 # --
 #!/usr/bin/env bats
+# NOTE:
+# Use this snippet to allow sourcing of the bash script
+# ```
+# # Support sourcing of this script
+# if [ "$0" = "$BASH_SOURCE" ] ; then
+#    execute "$@"
+# fi
+# ```
+
 
 command -v brew >/dev/null 2>&1 || ENVIRONMENT_LOCAL=false
 if [[ "\${ENVIRONMENT_LOCAL}" == "false" ]]; then
@@ -24,6 +33,13 @@ function teardown() {
    $4
 }
 
+function setup_mocks() {
+   source "${9:SCRIPT_TO_TEST}"
+
+   function ${10:func_to_mock}() { echo "$10: mocked."; }
+   export -f $10
+}
+
 @test "$1" {
    run $2
    assert_success
@@ -40,6 +56,13 @@ function teardown() {
 
 @test "Check with generic assert" {
    assert [ -z "\$var" ] # check if empty
+}
+
+@test "Test with mocking" {
+   setup_mocks
+
+   run $8
+   assert_sucess
 }
 
 $0

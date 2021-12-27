@@ -1,0 +1,14 @@
+# -*- mode: snippet -*-
+# name: vault-1pw
+# key: vault
+# expand-env: ((yas-indent-line 'fixed) (yas-wrap-around-region 'nil))
+# --
+# Getting docker hub credentials for 1-Password
+onepw_session_id := $(shell op signin my --raw)
+dockerhub_user := $(shell op get item "Docker" --fields "input_text_field" --session=$(onepw_session_id))
+dockerhub_password := $(shell op get item "Docker" --fields "password" --session=$(onepw_session_id))
+
+docker-scan:
+	@echo $(dockerhub_password) | docker login --username $(dockerhub_user) --password-stdin
+	docker scan --file Dockerfile $(container) --accept-license
+	docker scan --dependency-tree $(container) --accept-license

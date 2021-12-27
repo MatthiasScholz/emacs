@@ -1,0 +1,15 @@
+# -*- mode: snippet -*-
+# name: init_go
+# key: initgo
+# expand-env: ((yas-indent-line nil))
+# --
+git_url := ${1:github.com/MatthiasScholz/demo_go}
+init:
+  go mod init \$(git_url)
+
+app := ${2:demo_go}
+run:
+  go run cmd/\$(app)/main.go
+
+deps:
+  go mod tidy

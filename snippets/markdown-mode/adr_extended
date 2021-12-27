@@ -1,0 +1,89 @@
+# -*- mode: snippet -*-
+# name: adr
+# key: adr
+# --
+# ${1:ADR-01_short title of solved problem and solution}
+
+* Status: ${2:proposed|rejected|accepted|deprecated|superseded by [ADR-0001](0001-record-architecture-decisions.md)}
+* Date (last updated): `(format-time-string "%Y-%m-%d")`
+
+Technical Story: ${3:description|ticket/issue URL|none}
+
+## Context and Problem Statement
+
+${4:Describe the context and problem statement, e.g., in free form using two to three sentences. You may want to articulate the problem in form of a question.}
+
+## Decision Drivers <!-- optional -->
+
+* ${5:driver 1, e.g., a force, facing concern, ...}
+* ${6:driver 1, e.g., a force, facing concern, ...}
+
+## Considered Options
+
+* ${7:option 1}
+* ${8:option 2}
+* ${9:option 3}
+
+## Decision Outcome
+
+Chosen option: "${10:option 1}",
+because ${11:justification. e.g., only option, which meets k.o. criterion decision driver | which resolves force force | comes out best (see below)}.
+
+### Positive Consequences <!-- optional -->
+
+* ${12:e.g., improvement of quality attribute satisfaction, follow-up decisions required}
+* ...
+
+### Negative Consequences <!-- optional -->
+
+* ${13:e.g., compromising quality attribute, follow-up decisions required}
+* ...
+
+## Pros and Cons of the Options <!-- optional -->
+
+### ${7}
+
+${14:example|description|pointer to more information}
+
+#### Good
+
+* Good, because ${15:argument a}
+* Good, because ${16:argument b}
+
+
+#### Bad
+* Bad, because ${17:argument c}
+
+### ${8}
+
+${18:example|description|pointer to more information}
+
+#### Good
+
+* Good, because ${19:argument a}
+* Good, because ${20:argument b}
+
+
+#### Bad
+
+* Bad, because ${21:argument c}
+
+### ${9}
+
+${22:example|description|pointer to more information}
+
+##### Good
+
+* Good, because ${23:argument a}
+* Good, because ${24:argument b}
+
+##### Bad
+
+* Bad, because ${25:argument c}
+
+## Links <!-- optional -->
+
+* ${26:Link type} ${27:Link to ADR} <!-- example: Refined by [ADR-0001](0001-record-architecture-decisions.md) -->
+* ${28:Link type} ${29:Link to ADR} <!-- example: Refined by [ADR-0001](0001-record-architecture-decisions.md) -->
+
+<!-- markdownlint-disable-file MD013 -->

@@ -1,0 +1,40 @@
+# -*- mode: snippet -*-
+# name: Init Earthly Frontend
+# key: init_earthly_fe
+# expand-env: ((yas-indent-line nil))
+# --
+# has to match package.json -> engines -> node
+FROM node:14.15.4
+
+# Provide storybook in the appropriate version
+ARG STORYBOOK_VERSION=6.1.14
+RUN npm install --global sb@${STORYBOOK_VERSION}
+RUN npx sb --version
+
+# Convenience Support
+RUN npm install --global concurrently
+
+WORKDIR /code
+
+deps:
+   COPY .npmrc package.json package-lock.json ./
+   RUN --mount=type=cache,target=/root/.npm
+   RUN npm install
+   SAVE ARTIFACT package.json AS LOCAL ./package.json
+   SAVE ARTIFACT package-lock.json AS LOCAL ./package-lock.json
+
+lint:
+   FROM +deps
+   COPY .eslintignore .eslintrc ./
+   RUN npm run lint
+
+src:
+   FROM +deps
+   COPY rollup.config.js tsconfig.json ./
+   COPY src ./src
+
+build:
+   FROM +src
+   COPY public ./public
+   RUN npm run build
+   SAVE ARTIFACT public AS LOCAL ./public

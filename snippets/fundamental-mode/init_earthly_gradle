@@ -1,0 +1,54 @@
+# -*- mode: snippet -*-
+# name: Init Earthly Gradle
+# key: init_earthly_gradle
+# expand-env: ((yas-indent-line 'fixed) (yas-wrap-around-region 'nil))
+# --
+# Earthfile
+
+FROM gradle:jdk11
+WORKDIR /code
+
+gradle:
+  COPY gradle.properties .
+  COPY build.gradle .
+  RUN --mount=type=cache,target=/root/.gradle/caches \
+      gradle wrapper --no-daemon
+  SAVE ARTIFACT gradlew AS LOCAL gradlew
+  SAVE ARTIFACT gradle AS LOCAL gradle
+
+src:
+  FROM +gradle
+  COPY gradlew gradlew
+  COPY gradle gradle
+  COPY libs libs
+  COPY src src
+  COPY go go
+
+build:
+  FROM +src
+  RUN --mount=type=cache,target=/root/.gradle/caches \
+      gradle --no-daemon build -x test -x detekt
+
+lint:
+  FROM +src
+  COPY detekt-config.yml .
+  RUN --mount=type=cache,target=/root/.gradle/caches \
+      gradle --no-daemon detekt
+
+test:
+  FROM +src
+  RUN --mount=type=cache,target=/root/.gradle/caches \
+      gradle --no-daemon test
+  RUN --mount=type=cache,target=/root/.gradle/caches \
+      gradle --no-daemon integrationTest
+  RUN --mount=type=cache,target=/root/.gradle/caches \
+      gradle --no-daemon pactTest
+
+security:
+  FROM +src
+  RUN --mount=type=cache,target=/root/.gradle/caches \
+      gradle --no-daemon hawkeye
+
+run:
+  RUN --mount=type=cache,target=/root/.gradle/caches \
+      gradle --no-daemon bootRun

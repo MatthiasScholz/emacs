@@ -1,0 +1,28 @@
+# -*- mode: snippet -*-
+# name: consul_external_service
+# key: consul_external_service
+# expand-env: ((yas-indent-line 'fixed) (yas-wrap-around-region 'nil))
+# --
+{
+  "Node": "$1",
+  "Address": "$2",
+  "NodeMeta": {
+              "external-node": "true",
+              "external-probe": "true"
+  },
+  "Service": {
+             "ID": "$1-1",
+             "Service": "$1",
+             "Port": ${3:443}
+  },
+  "Checks": [
+            {
+              "Name": "http-check",
+              "status": "passing",
+              "Definition": {
+                            "http": "https://$2",
+                            "interval": "30s"
+              }
+            }
+            ]
+}

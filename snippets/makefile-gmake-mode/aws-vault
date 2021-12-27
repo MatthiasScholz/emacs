@@ -1,0 +1,22 @@
+# -*- mode: snippet -*-
+# name: aws-vault
+# key: av
+# expand-env: ((yas-indent-line 'fixed) (yas-wrap-around-region 'nil))
+# --
+region := ${1:-us-west-1}
+role := ${2:-homeserver}
+define tf
+	$(eval input=\$(1))
+	tfswitch
+	AWS_REGION=\$(region) aws-vault exec \$(role) -- terraform \$(input)
+endef
+
+init:
+	\$(call tf, init)
+
+verify:
+	\$(call tf, validate)
+	\$(call tf, plan)
+
+apply:
+	\$(call tf, apply)

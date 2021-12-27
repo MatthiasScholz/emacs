@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: AWS Secret Handling Action Copy
+# key: aws_sec_action_copy
+# --
+{
+   "kind": "copy",
+   "src":  "$1",
+   "dest": "$2"
+}$0

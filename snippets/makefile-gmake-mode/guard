@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: guard
+# key: guard
+# expand-env: ((yas-indent-line 'fixed) (yas-wrap-around-region 'nil))
+# --
+guard-%:
+	if [ -z '${${*}}' ]; then echo "ERROR :: Variable '$*' not set" && exit 1; fi

@@ -1,0 +1,40 @@
+# -*- mode: snippet -*-
+# name: Init Golang
+# key: init_go
+# expand-env: ((yas-indent-line nil))
+# --
+FROM golang:1.15.5-alpine
+
+# NOTE: GCC is needed to run the tests as is:
+# - https://github.com/golang/go/issues/42996
+RUN apk --no-cache add build-base
+
+# NOTE golang has a folder naming convention:
+WORKDIR /src
+
+init:
+  RUN go mod init $1
+  SAVE ARTIFACT go.mod AS LOCAL go.mod
+  SAVE ARTIFACT go.sum AS LOCAL go.sum
+
+deps:
+  COPY . .
+  RUN go mod tidy
+  SAVE ARTIFACT go.mod AS LOCAL go.mod
+  SAVE ARTIFACT go.sum AS LOCAL go.sum
+
+build:
+  FROM +deps
+  RUN go build -o $1
+  # NOTE BUILD CONTAINER
+
+image:
+  COPY +build/$1 .
+  ENTRYPOINT ["/$1"]
+  SAVE IMAGE $1:latest
+
+test:
+  FROM +deps
+  RUN go test -v -coverprofile=app.coverage
+  RUN go tool cover -func=app.coverage -html
+  SAVE ARTIFACT coverage.html AS LOCAL coverage.html

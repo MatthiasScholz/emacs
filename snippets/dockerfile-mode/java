@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: java
+# key: java
+# --
+# SEE: https://hub.docker.com/_/openjdk?tab=tags&page=1&ordering=last_updated
+FROM openjdk:17-jdk-alpine3.13
+
+RUN apk add --update-cache --no-cache ca-certificates bash
+
+RUN java --version

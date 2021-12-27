@@ -1,0 +1,23 @@
+# -*- mode: snippet -*-
+# name: docker-compose
+# key: docker-compose
+# expand-env: ((yas-indent-line nil))
+# --
+up:
+	docker-compose up -d
+
+down:
+	docker-compose down
+
+logs:
+	docker-compose logs -f
+
+ps:
+  docker-compose ps
+
+run: up logs
+
+restart: down up
+
+service-$1:
+	open http://localhost:$2

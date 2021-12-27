@@ -1,0 +1,39 @@
+# -*- mode: snippet -*-
+# name: diagram
+# key: diagram
+# --
+#!/usr/bin/env python3
+
+"""
+Creation of $1 diagram to visualize the $2.
+
+NOTE:
+This script uses a Python package called: `diagrams` (https://diagrams.mingrammer.com).
+Please check the referenced installation guide:
+- https://diagrams.mingrammer.com/docs/getting-started/installation
+"""
+
+from diagrams import Cluster, Diagram, Edge
+
+from diagrams.generic.compute import Rack
+from diagrams.generic.storage import Storage
+from diagrams.onprem.client import Users
+from diagrams.onprem.container import Docker
+from diagrams.onprem.vcs import Git
+
+# Use filename as diagram name and export the diagram next to the file
+import os
+dir_path = os.path.dirname(os.path.realpath(__file__))
+file_name = os.path.splitext(os.path.basename(os.path.realpath(__file__)))[0]
+diagram_path = os.path.join(dir_path, file_name)
+print(f"INFO :: Exporting diagram to '{diagram_path}.png'")
+
+graph_attr = {
+    "fontname": "OpenSans:light",
+    "fontsize": "24"
+    #"bgcolor": "transparent"
+}
+
+with Diagram(name="$1", filename=diagram_path, graph_attr=graph_attr, direction="LR", show=True):
+    with Cluster("$3"):
+         pass

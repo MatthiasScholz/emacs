@@ -1,8 +1,11 @@
 # -*- mode: snippet -*-
-# name: Docker Compose Init
-# key: init_dc
+# name: docker-compose build and aws
+# key: dc init build
+# expand-env: ((yas-indent-line nil))
 # --
+---
 version: "3.8"
+
 services:
   $1:
     build: .

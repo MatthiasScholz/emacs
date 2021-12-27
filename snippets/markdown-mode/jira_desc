@@ -1,0 +1,31 @@
+# -*- mode: snippet -*-
+# name: jira description
+# key: jira_desc
+# --
+*Description / Goal*
+
+
+
+*Business Impact*
+
+
+
+*Scope*
+
+ * ...
+
+*Out of Scope*
+
+ * ...
+
+*Assumptions*
+
+ * ...
+
+*Acceptance criteria*
+
+ * ...
+
+*Hints*
+
+ * ...

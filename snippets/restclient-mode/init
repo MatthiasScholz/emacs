@@ -1,0 +1,23 @@
+# -*- mode: snippet -*-
+# name: init
+# key: init
+# --
+# -*- restclient -*-
+# Emacs Commands:
+# - C-c C-v - execute and keep focus
+# - C-c C-g - start helm session
+# - C-c C-n|p - jump to next | previous query
+#
+# SEE:
+# - https://github.com/pashky/restclient.el
+# - https://jakemccrary.com/blog/2014/07/04/using-emacs-to-explore-an-http-api/
+##############################################################################
+# API Documentation:
+# - $5
+
+:service = http$1
+
+# API: $2
+${3:GET} :service/$4
+
+$0

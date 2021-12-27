@@ -1,0 +1,24 @@
+# -*- mode: snippet -*-
+# name: alpine
+# key: alpine
+# --
+FROM alpine:latest
+MAINTAINER Matthias Scholz <matthias.scholz@thoughtworks.com>
+
+ENV LANG=en_US.UTF-8
+
+# Glibc
+# https://github.com/andyshinn/alpine-pkg-glibc
+ENV GLIBC_PKG_VERSION=2.33-r0
+RUN apk add --no-cache --update-cache ca-certificates curl && \
+curl -Lo /etc/apk/keys/andyshinn.rsa.pub "https://github.com/andyshinn/alpine-pkg-glibc/releases/download/${GLIBC_PKG_VERSION}/andyshinn.rsa.pub" && \
+curl -Lo glibc-${GLIBC_PKG_VERSION}.apk "https://github.com/andyshinn/alpine-pkg-glibc/releases/download/${GLIBC_PKG_VERSION}/glibc-${GLIBC_PKG_VERSION}.apk" && \
+curl -Lo glibc-bin-${GLIBC_PKG_VERSION}.apk "https://github.com/andyshinn/alpine-pkg-glibc/releases/download/${GLIBC_PKG_VERSION}/glibc-bin-${GLIBC_PKG_VERSION}.apk" && \
+curl -Lo glibc-i18n-${GLIBC_PKG_VERSION}.apk "https://github.com/andyshinn/alpine-pkg-glibc/releases/download/${GLIBC_PKG_VERSION}/glibc-i18n-${GLIBC_PKG_VERSION}.apk" && \
+apk add glibc-${GLIBC_PKG_VERSION}.apk glibc-bin-${GLIBC_PKG_VERSION}.apk glibc-i18n-${GLIBC_PKG_VERSION}.apk && \
+apk del curl ca-certificates
+
+# Make
+RUN apk add --no-cache --update-cache make
+
+RUN ["/bin/make"]

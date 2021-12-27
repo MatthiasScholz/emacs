@@ -1,0 +1,24 @@
+# -*- mode: snippet -*-
+# name: init_batect
+# key: ib
+# expand-env: ((yas-indent-line 'fixed) (yas-wrap-around-region 'nil))
+# --
+batect_version := 0.69.0
+batect-init:
+	@echo "INFO :: Setup batect $(batect_version)"
+	@curl --silent -O -L https://github.com/batect/batect/releases/download/$(batect_version)/batect
+	@curl --silent -O -L https://github.com/batect/batect/releases/download/$(batect_version)/batect.cmd
+	@chmod +x batect
+	@touch batect.yml
+
+batect-upgrade:
+	./batect --upgrade
+
+shell:
+	./batect shell
+
+build:
+	./batect build
+
+test:
+	./batect test

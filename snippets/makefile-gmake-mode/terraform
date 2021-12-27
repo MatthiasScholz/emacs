@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
 # name: Makefile Terraform
-# key: terraform
+# key: init_terraform
 # expand-env: ((yas-indent-line nil))
 # --
 # Makefile for executing terraform including validation steps.
@@ -8,30 +8,44 @@
 # An external tool for additional validation is used 'tflint' ( https://github.com/terraform-linters/tflint ). On MacOSX system it can be installed via 'install_macosx'.
 AWS_PROFILE	?= ${1:default}
 
-# Helper functionality to colorise status outputs.
-helper_output$0
+region := eu-west-1
+role := homeserver
 
 # Only internally used variable
 INFRA_PLAN = infrastructure.plan
 PATH_MODULES = ${2:"../../modules/"}
 
+define access
+       \$(eval input=$(1))
+       AWS_REGION=$(region) aws-vault exec $(role) -- $(input)
+endef
+
+define tf
+       \$(eval input=$(1))
+       tfswitch
+       \$(call access, terraform $(input))
+endef
+
+
 all: init validate apply test$3
 
 install_macosx:
 	brew install tflint
+  brew install tfswitch
 
 init:
-	\$(call echoinfo, "[INFO] Initializing terraform")
-	terraform init
+	\$(info "[INFO] Initializing terraform")
+	\$(call tf, init)
 
 validate:
-	\$(call echoinfo, "[INFO] Validating terraform")
-	\$(call echoinfo, "[INFO] .Validating main")
-	@terraform validate
-	@terraform fmt -write=false
-	\$(call echoinfo, "[INFO] .Validating modules")
-	cd "$(PATH_MODULES)" && terraform fmt -write=false -recursive
-	\$(call echoinfo, "[INFO] .Linting")
+	\$(info "[INFO] Validating terraform")
+	\$(info "[INFO] .Validating main")
+  \$(call tf, validate)
+  \$(call tf, fmt -write=false)
+	\$(info "[INFO] .Validating modules")
+  # TODO: Terraform supports directories now
+	cd "$(PATH_MODULES)" && \$(call tf, fmt -write=false -recursive)
+	\$(info "[INFO] .Linting")
 	@tflint .
 	@tflint --module .
 
@@ -44,18 +58,17 @@ validate_deep:
 	@tflint --deep --module .
 
 plan: validate
-	\$(call echoinfo, "[INFO] Planing infrastructure")
-	terraform plan -var "deploy_profile=$(AWS_PROFILE)" -out="$(INFRA_PLAN)"
+	\$(info "[INFO] Planing infrastructure")
+  \$(call tf, plan -var "deploy_profile=$(AWS_PROFILE)" -out="$(INFRA_PLAN)")
 
 apply: plan
-	\$(call echoinfo, "[INFO] Apply infrastructure")
-	terraform apply "$(INFRA_PLAN)"
+	\$(info "[INFO] Apply infrastructure")
+  \$(call tf, apply "$(INFRA_PLAN)")
 
 destroy:
-	\$(call echowarn, "[INFO] DESTROYING infrastructure")
-	terraform destroy
+	\$(warn "[INFO] DESTROYING infrastructure")
+  \$(call tf, destroy)
 
 test:
-	\$(call echoinfo, "[INFO] Test infrastructure")
+	\$(info "[INFO] Test infrastructure")
 	@echo "TODO :: test still needs to be written."
-

@@ -1,0 +1,12 @@
+# -*- mode: snippet -*-
+# name: Technology Radar Blip
+# key: blip
+# --
+$0
+{
+  "name": "$2",
+  "description": "<a href=\\"$1\\">$1</a>",
+  "quadrant": "${3:Languages and Frameworks}",
+  "ring": "${4:Assess}",
+  "isNew": ${5:true}
+},

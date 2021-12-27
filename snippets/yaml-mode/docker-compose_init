@@ -1,0 +1,23 @@
+# -*- mode: snippet -*-
+# name: docker-compose_init
+# key: dc init generic
+# expand-env: ((yas-indent-line nil))
+# --
+---
+version: '3'
+
+services:
+  $1:
+    image: $1:latest
+    restart: unless-stopped
+    networks:
+      - net-$1
+    ports:
+      - $2:80
+    environment:
+    - $3=$4
+
+networks:
+  net-$1:
+    name: net-$1
+    external: false

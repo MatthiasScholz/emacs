@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: COS Infrastructure Examples
 # key: cos_make
+# expand-env: ((yas-indent-line 'fixed) (yas-wrap-around-region 'nil))
 # --
 # OVERVIEW
 #

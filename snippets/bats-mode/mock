@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: mock
+# key: mock
+# --
+function ${10:func_to_mock}() { echo "$10: mocked."; }
+export -f $10

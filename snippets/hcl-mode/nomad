@@ -18,6 +18,10 @@ job "$1" {
       mode     = "delay"
     }
 
+    network {
+      port "$4_http" {}
+    }
+
     task "$4" {
       driver = "docker"
       config {
@@ -27,13 +31,13 @@ job "$1" {
         }
       }
 
+      env {
+        $10 = "$11"
+      }
+
       resources {
         cpu    = ${6:200} # MHz
         memory = ${7:300} # MB
-        network {
-          mbits = 10
-          port "http" {}
-        }
       }
 
       service {
@@ -50,10 +54,5 @@ job "$1" {
           timeout  = "2s"
         }
       }
-
-      env {
-        $10 = "$11"
-      }
-    }
   }
 }

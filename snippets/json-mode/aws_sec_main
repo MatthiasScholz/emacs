@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# name: AWS Secret Handling Main
+# key: aws_sec_main
+# --
+{
+   "name": "$1",
+   "description": "$2",
+   "action": [
+      $0
+   ]
+}
