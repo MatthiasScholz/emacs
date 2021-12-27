@@ -124,7 +124,7 @@
   (use-package markdown-mode
     :config
     (progn
-      (add-hook 'markdown-mode 'flycheck-mode))
+      (add-hook 'markdown-mode-hook 'flycheck-mode))
     )
   )
 
