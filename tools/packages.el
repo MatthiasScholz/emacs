@@ -32,7 +32,7 @@
 (defconst tools-packages
   '(
     terraform-mode
-;;    company-terraform
+    company-terraform
     dockerfile-mode
     docker-tramp
 ;;    plantuml-mode
@@ -71,13 +71,13 @@
   )
 
 ;; TODO Check usage
-;; (defun tools/init-company-terraform ()
-;;   (use-package company-terraform
-;;     :config
-;;     (progn
-;;       (company-terraform-init))
-;;     )
-;;   )
+(defun tools/init-company-terraform ()
+  (use-package company-terraform
+    :config
+    (progn
+      (company-terraform-init))
+    )
+  )
 
 (defun tools/post-init-dockerfile-mode ()
   (use-package dockerfile-mode)
