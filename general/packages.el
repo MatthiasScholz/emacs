@@ -32,6 +32,7 @@
 (defconst general-packages
   '(
     origami
+    doom-modeline
     ;; FIXME highlight-symbol
     helm-mt
     helm-swoop
@@ -171,5 +172,8 @@
 ;; - o|s|r - to search
 (defun general/init-vlf ()
   (use-package vlf))
+
+;; TODO Showing current function context in the modeline by default
+;; https://emacsredux.com/blog/2014/04/05/which-function-mode/
 
 ;;; packages.el ends here
